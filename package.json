@@ -1,5 +1,5 @@
 {
-  "name": "rewards",
+  "name": "rewards-and-recognition",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,16 +8,30 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "vue": "^2.6.6"
+    "vue": "^2.6.6",
+    "vue-class-component": "6.2.0",
+    "vue-property-decorator": "6.1.0",
+    "vue-router": "^3.0.2",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-eslint": "^3.5.0",
     "@vue/cli-service": "^3.5.0",
+    "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.5.21"
+    "inversify": "4.13.0",
+    "inversify-inject-decorators": "3.1.0",
+    "inversify-vanillajs-helpers": "2.0.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.1.0",
+    "typescript": "^3.2.1",
+    "vue-template-compiler": "^2.5.21",
+    "vuex-class": "0.3.1"
   },
   "eslintConfig": {
     "root": true,
@@ -26,11 +40,22 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "eslint:recommended"
+      "@vue/standard"
     ],
-    "rules": {},
+    "rules": {
+      "no-unused-vars": [
+        "error",
+        {
+          "args": "none"
+        }
+      ],
+      "no-new": 0
+    },
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "babel-eslint",
+      "ecmaFeatures": {
+        "legacyDecorators": true
+      }
     }
   },
   "postcss": {

@@ -1,8 +1,23 @@
 import Vue from 'vue'
-import App from './App.vue'
+
+import { registerConstantValue, ROUTER } from './di'
+// import { createStore } from "./store";
+import { createRouter } from './router'
+import App from './App'
+
+Vue.config.productionTip = false
+
+// let store = createStore(Vue);
+// registerConstantValue(STORE, store);
+
+let router = createRouter(Vue)
+registerConstantValue(ROUTER, router)
 
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  el: '#app',
+  // store,
+  router,
+  render: h => h(App)
+})
