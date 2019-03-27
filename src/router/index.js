@@ -15,7 +15,7 @@ export function createRouter (vueInstance = Vue) {
 
   let routes = [
     {
-      path: '/',
+      path: '/:pid',
       name: 'home',
       component: HomeView,
       meta: {
@@ -23,8 +23,48 @@ export function createRouter (vueInstance = Vue) {
       }
     },
     {
+      path: '/:pid/my-rewards',
+      name: 'rewards',
+      component: HomeView,
+      meta: {
+        title: 'Home'
+      }
+    },
+    {
+      path: '/:pid/redeem-rewards',
+      name: 'redeem',
+      component: HomeView,
+      meta: {
+        title: 'Home'
+      }
+    },
+    {
+      path: '/:pid/my-teams',
+      name: 'teams',
+      component: HomeView,
+      meta: {
+        title: 'Home'
+      }
+    },
+    {
+      path: '/:pid/team/:teamId',
+      name: 'teamDetails',
+      component: HomeView,
+      meta: {
+        title: 'Home'
+      }
+    },
+    {
+      path: '/:pid/configure-rewards',
+      name: 'admin',
+      component: HomeView,
+      meta: {
+        title: 'Home'
+      }
+    },
+    {
       path: '*',
-      redirect: '/'
+      redirect: '/1234'
     }
   ]
 

@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 
 import { registerConstantValue, ROUTER } from './di'
 // import { createStore } from "./store";
@@ -6,6 +8,7 @@ import { createRouter } from './router'
 import App from './App'
 
 Vue.config.productionTip = false
+Vue.use(Vuetify)
 
 // let store = createStore(Vue);
 // registerConstantValue(STORE, store);
