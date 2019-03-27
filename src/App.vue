@@ -1,34 +1,38 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <router-view />
+  <div>
+    <RRHeaderComponent />
+    <div id="app">
+      <img alt="Vue logo" src="./assets/logo.png">
+      <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import { Component } from 'vue-property-decorator'
+import Vue from "vue";
+import { Component } from "vue-property-decorator";
 
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+
+import RRHeaderComponent from "./components/RRHeaderComponent.vue";
 
 @Component({
   components: {
-    HelloWorld
+    HelloWorld,
+    RRHeaderComponent
   }
 })
-export default class App extends Vue {
-
-}
+export default class App extends Vue {}
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 </style>
