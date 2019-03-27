@@ -2,7 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Component from 'vue-class-component'
 
+let AdminView = () => import('../views/admin')
 let HomeView = () => import('../views/home')
+let MyRewardsView = () => import('../views/my-rewards')
+let MyTeamsView = () => import('../views/my-teams')
 
 export function createRouter (vueInstance = Vue) {
   Component.registerHooks([
@@ -25,7 +28,7 @@ export function createRouter (vueInstance = Vue) {
     {
       path: '/:pid/my-rewards',
       name: 'rewards',
-      component: HomeView,
+      component: MyRewardsView,
       meta: {
         title: 'Home'
       }
@@ -41,7 +44,7 @@ export function createRouter (vueInstance = Vue) {
     {
       path: '/:pid/my-teams',
       name: 'teams',
-      component: HomeView,
+      component: MyTeamsView,
       meta: {
         title: 'Home'
       }
@@ -57,7 +60,7 @@ export function createRouter (vueInstance = Vue) {
     {
       path: '/:pid/configure-rewards',
       name: 'admin',
-      component: HomeView,
+      component: AdminView,
       meta: {
         title: 'Home'
       }

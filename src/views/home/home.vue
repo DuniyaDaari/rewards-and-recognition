@@ -1,25 +1,34 @@
 <template>
-  <div>
-    Hello {{id}}
-    <v-layout>
-      <v-flex xs12 sm6 offset-sm3>
-        <v-card>
-          <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2.75"></v-img>
+  <div class="rr-home">
+    <div class="rr-flex-one">
+      <rr-card
+        :image-path="myRewardsImagePath"
+        card-heading="View my rewards"
+        card-text="Click here to view the rewards you have received from your organization"
+        :button-route="{ name:'rewards', params: { pid } }"
+        >
+      </rr-card>
+    </div>
 
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-              <div>{{ cardText }}</div>
-            </div>
-          </v-card-title>
+    <div class="rr-flex-one">
+      <rr-card
+        :image-path="myTeamsImagePath"
+        card-heading="View my teams"
+        card-text="Click here to view the teams under you and view their rewards"
+        :button-route="{ name:'teams', params: { pid } }"
+        >
+      </rr-card>
+    </div>
 
-          <v-card-actions>
-            <v-btn flat color="orange">Share</v-btn>
-            <v-btn flat color="orange">Explore</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-flex>
-    </v-layout>
+    <div class="rr-flex-one">
+      <rr-card
+        :image-path="adminImagePath"
+        card-heading="Configure"
+        card-text="Click here to configure the awards your organization"
+        :button-route="{ name:'admin', params: { pid } }"
+        >
+      </rr-card>
+    </div>
   </div>
 </template>
 <script>
@@ -28,17 +37,28 @@ import { Component } from 'vue-property-decorator'
 
 import { LazyInject } from '../../di'
 import { COMMON_SERVICE } from '../../services/helpers/common'
+import RrCard from '../../components/rr-card'
+import { RrCommmonState } from '../../store'
 
-@Component()
+@Component({
+  components: {
+    RrCard
+  }
+})
 export default class HomeView extends Vue {
-  @LazyInject(COMMON_SERVICE) commonService;
+  @LazyInject(COMMON_SERVICE) commonService
+  @RrCommmonState appImages
 
-  id = '';
-  cardText =
-    'Lorem ipsum dolor sit amet, brute iriure accusata ne mea. Eos suavitate referrentur ad, te duo agam libris qualisque, utroque quaestio accommodare no qui. Et percipit laboramus usu, no invidunt verterem nominati mel. Dolorem ancillae an mei, ut putant invenire splendide mel, ea nec propriae adipisci. Ignota salutandi accusamus in sed, et per malis fuisset, qui id ludus appareat.';
+  id = ''
+  myRewardsImagePath = ''
+  pid = ''
 
   created () {
     this.id = this.commonService.getId()
+    this.pid = this.$router.currentRoute.params.pid
+    this.myRewardsImagePath = this.appImages.rewards
+    this.myTeamsImagePath = this.appImages.teams
+    this.adminImagePath = this.appImages.admin
   }
 }
 </script>

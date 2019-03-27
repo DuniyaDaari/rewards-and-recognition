@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <router-view />
+    <!-- <rr-left-nav /> -->
+    <router-view class="rr-router-view"/>
   </div>
 </template>
 
@@ -10,25 +9,28 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+// import RrLeftNav from './components/rr-left-nav'
+import { RrCommmonMutation } from './store'
 
-@Component({
-  components: {
-    HelloWorld
-  }
-})
+@Component()
 export default class App extends Vue {
+  @RrCommmonMutation setAppImages
 
+  images = {}
+
+  created () {
+    this.images.rewards = require('./assets/my-rewards.png')
+    this.images.teams = require('./assets/my-teams.png')
+    this.images.admin = require('./assets/admin.png')
+    this.setAppImages(this.images)
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import './styles/main.scss';
+.rr-router-view {
+  padding-left: 20%;
 }
 </style>
