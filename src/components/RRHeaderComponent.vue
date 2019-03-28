@@ -1,28 +1,29 @@
 <template>
   <div id="headerBg">
       <span id="headerLogo">
-          Header!
+          <i class="fas fa-medal"></i>
       </span>
       <span v-if="login" id="profilePic">
           <i class="fas fa-user-circle"></i>
       </span>
+      <span v-else id="profilePic">
+          Login
+      </span>
   </div>
 </template>
 
-<<script>
+<script>
 export default {
   name: 'RRHeaderComponent',
-  data: function(){
-        return {
-            login: true
-        }
-
+  data: function () {
+    return {
+      login: false
+    }
   }
 }
 </script>
 
-
-<<style>
+<style>
     #headerBg {
         background: red;
         padding: 20px;
@@ -34,6 +35,7 @@ export default {
         position: -webkit-sticky;
         position: sticky;
         top: -1px;
+        opacity: 0.8;
     }
     #profilePic {
         font-size: 30px;
@@ -41,6 +43,6 @@ export default {
         float: right;
     }
     #headerLogo {
-        font-size: 25px;
+        font-size: 30px;
     }
 </style>
