@@ -38,7 +38,7 @@ import { Component } from 'vue-property-decorator'
 import { LazyInject } from '../../di'
 import { COMMON_SERVICE } from '../../services/helpers/common'
 import RrCard from '../../components/rr-card'
-import { RrCommmonState } from '../../store'
+import { RrCommonState } from '../../store'
 
 @Component({
   components: {
@@ -47,7 +47,7 @@ import { RrCommmonState } from '../../store'
 })
 export default class HomeView extends Vue {
   @LazyInject(COMMON_SERVICE) commonService
-  @RrCommmonState appImages
+  @RrCommonState appImages
 
   id = ''
   myRewardsImagePath = ''

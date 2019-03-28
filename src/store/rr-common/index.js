@@ -1,16 +1,17 @@
 import cloneDeep from 'lodash/cloneDeep'
 
-// import * as actions from './actions'
+import * as actions from './actions'
 import * as mutations from './mutations'
 
 let defaultState = {
+  isUserDetailsLoading: true,
   appImages: {}
 }
 
 export function createModule () {
   return {
     state: cloneDeep(defaultState),
-    // actions,
+    actions,
     mutations,
     namespaced: true
   }

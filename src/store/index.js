@@ -35,5 +35,5 @@ export function createStore (vueInstance = Vue) {
 
 export { Action, Getter, Mutation, State }
 
-let { State: RrCommmonState, Action: RrCommmonAction, Mutation: RrCommmonMutation } = namespace(RR_COMMON_MODULE)
-export { RrCommmonState, RrCommmonAction, RrCommmonMutation }
+let { State: RrCommonState, Action: RrCommonAction, Mutation: RrCommonMutation } = namespace(RR_COMMON_MODULE)
+export { RrCommonState, RrCommonAction, RrCommonMutation }
