@@ -1,8 +1,7 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <router-view />
+  <div v-if="!isUserDetailsLoading">
+    <!-- <rr-left-nav /> -->
+    <router-view class="rr-router-view"/>
   </div>
 </template>
 
@@ -10,25 +9,29 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 
-import HelloWorld from './components/HelloWorld.vue'
+import { RrCommonAction, RrCommonMutation, RrCommonState } from './store'
 
-@Component({
-  components: {
-    HelloWorld
-  }
-})
+@Component()
 export default class App extends Vue {
+  @RrCommonAction getUserDetails
+  @RrCommonState isUserDetailsLoading
+  @RrCommonMutation setAppImages
 
+  images = {}
+
+  created () {
+    this.images.rewards = require('./assets/my-rewards.png')
+    this.images.teams = require('./assets/my-teams.png')
+    this.images.admin = require('./assets/admin.png')
+    this.setAppImages(this.images)
+    this.getUserDetails()
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import './styles/main.scss';
+.rr-router-view {
+  padding-left: 20%;
 }
 </style>
