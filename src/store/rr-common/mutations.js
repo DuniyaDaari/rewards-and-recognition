@@ -9,3 +9,7 @@ export function setIsUserDetailsLoading (state, isLoading) {
 export function setUserDetails (state, userDetails) {
   state.userDetails = userDetails
 }
+
+export function setPagesVisible (state, pages) {
+  state.pagesVisible = [ ...pages ]
+}
