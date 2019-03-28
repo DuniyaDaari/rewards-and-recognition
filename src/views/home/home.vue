@@ -1,6 +1,8 @@
 <template>
   <div class="rr-home">
-    <div class="rr-flex-one">
+    <div
+      class="rr-flex-one"
+      v-if="myRewardsImagePath">
       <rr-card
         :image-path="myRewardsImagePath"
         card-heading="View my rewards"
@@ -10,7 +12,9 @@
       </rr-card>
     </div>
 
-    <div class="rr-flex-one">
+    <div
+      class="rr-flex-one"
+      v-if="myTeamsImagePath">
       <rr-card
         :image-path="myTeamsImagePath"
         card-heading="View my teams"
@@ -20,7 +24,9 @@
       </rr-card>
     </div>
 
-    <div class="rr-flex-one">
+    <div
+      class="rr-flex-one"
+      v-if="adminImagePath">
       <rr-card
         :image-path="adminImagePath"
         card-heading="Configure"
@@ -48,17 +54,18 @@ import { RrCommonState } from '../../store'
 export default class HomeView extends Vue {
   @LazyInject(COMMON_SERVICE) commonService
   @RrCommonState appImages
+  @RrCommonState pagesVisible
 
-  id = ''
   myRewardsImagePath = ''
+  myTeamsImagePath = ''
+  adminImagePath = ''
   pid = ''
 
   created () {
-    this.id = this.commonService.getId()
     this.pid = this.$router.currentRoute.params.pid
-    this.myRewardsImagePath = this.appImages.rewards
-    this.myTeamsImagePath = this.appImages.teams
-    this.adminImagePath = this.appImages.admin
+    this.myRewardsImagePath = this.pagesVisible.includes('rewards') ? this.appImages.rewards : undefined
+    this.myTeamsImagePath = this.pagesVisible.includes('teams') ? this.appImages.teams : undefined
+    this.adminImagePath = this.pagesVisible.includes('admin') ? this.appImages.admin : undefined
   }
 }
 </script>

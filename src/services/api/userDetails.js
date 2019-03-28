@@ -12,8 +12,8 @@ export default class UserDetailsService {
     return Promise.resolve(mockUserDetails)
   }
 
-  async getVisiblePages () {
-    let userDetails = await this.fetchUserDetails()
+  async getVisiblePages (details) {
+    let userDetails = details || await this.fetchUserDetails()
     let pagesVisible = []
 
     switch (userDetails.role) {
