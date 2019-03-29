@@ -6,7 +6,8 @@ import * as mutations from './mutations'
 let defaultState = {
   isUserDetailsLoading: true,
   appImages: {},
-  pagesVisible: []
+  pagesVisible: [],
+  totalRewardPoints: 0
 }
 
 export function createModule () {
