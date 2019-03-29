@@ -1,9 +1,16 @@
 <template>
-  <div class="row">
+  <div>
+    <div class="row my-3 d-flex justify-content-end">
+      <div class="col-sm-2"><span class="align-middle">Total Reward Points : </span> <span class="font-weight-bold align-middle">{{totalRewardPoints}}</span></div>
+      <div class="col-sm-2">
+        <router-link tag="button" class="btn btn-success float-right mr-3" :to="{ name:'redeem', params: { pid } }">Redeem Points</router-link>
+      </div>
+    </div>
+    <div class="row">
     <div class="col-sm-4" v-for="reward in rewardDetails" :key="reward.id">
       <div class="mr-2 mb-2">
         <div class="card">
-          <img class="card-img-top" :src="reward.id== 1 ? ycmd : patonback" alt="Card image cap">
+          <img class="card-img-top" :src="rewardImages[reward.rewardId]" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{reward.name}}</h5>
             <p class="card-text">{{reward.comments}}</p>
@@ -17,6 +24,8 @@
       </div>
     </div>
   </div>
+  </div>
+
 </template>
 <script>
 import Vue from 'vue'
@@ -25,22 +34,39 @@ import { Component } from 'vue-property-decorator'
 import { LazyInject } from '../../di'
 import { USER_DETAILS_SERVICE } from '../../services/api/userDetails'
 import { REWARDS_DETAILS_SERVICE } from '../../services/api/rewardsDetails'
-import { RrCommonState } from '../../store'
+import { RrCommonState, RrCommonMutation } from '../../store'
 
 @Component()
 export default class MyRewardsView extends Vue {
   @LazyInject(USER_DETAILS_SERVICE) userDetailsService;
   @LazyInject(REWARDS_DETAILS_SERVICE) rewardsDetailsService;
   @RrCommonState appImages;
+  @RrCommonState userDetails;
+  @RrCommonMutation setTotalRewardPoints;
+
   rewardDetails = [];
   patonback = '';
   ycmd = '';
+  totalRewardPoints = 0;
+  rewardImages = [];
 
   async created () {
+    this.pid = this.userDetails.pid
     this.userDetailsService.isUserAuthorized('rewards')
     this.rewardDetails = await this.rewardsDetailsService.fetchRewardsDetails()
-    this.patonback = this.appImages.patonback
-    this.ycmd = this.appImages.ycmd
+    this.rewardImages = {}
+    this.rewardImages[2] = this.appImages.patonback
+    this.rewardImages[1] = this.appImages.ycmd
+    this.calculateTotalRewardPoints()
+    this.setTotalRewardPoints(this.totalRewardPoints)
+  }
+
+  calculateTotalRewardPoints () {
+    console.log('RewardCalc')
+    this.rewardDetails.forEach((item) => {
+      // this.rewardImages[item.rewardId]
+      this.totalRewardPoints += parseInt(item.rewardPoints)
+    })
   }
 }
 </script>

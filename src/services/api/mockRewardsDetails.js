@@ -1,7 +1,7 @@
 export let mockRewardsDetails = [{
-  id: '2',
+  id: '123456',
   employeePid: 'P123456',
-  rewardId: '123456',
+  rewardId: '2',
   teamId: '789',
   nominationDate: '12/03/1019',
   nominatedBy: 'Mr. Abc',
@@ -13,9 +13,9 @@ export let mockRewardsDetails = [{
   lastModifiedDate: '',
   name: 'Pat On The Back'
 }, {
-  id: '1',
+  id: '123454',
   employeePid: 'P1240456',
-  rewardId: '123454',
+  rewardId: '1',
   teamId: '789',
   nominationDate: '13/03/1019',
   nominatedBy: 'Mr. Abc xyz',
@@ -27,9 +27,9 @@ export let mockRewardsDetails = [{
   lastModifiedDate: '',
   name: 'You Carried My Day'
 }, {
-  id: '2',
+  id: '12343254',
   employeePid: 'P1240456',
-  rewardId: '123454',
+  rewardId: '2',
   teamId: '789',
   nominationDate: '13/03/1019',
   nominatedBy: 'Mr. Abc xyz',
