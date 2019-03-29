@@ -39,11 +39,8 @@ export default class MyRewardsView extends Vue {
   async created () {
     this.userDetailsService.isUserAuthorized('rewards')
     this.rewardDetails = await this.rewardsDetailsService.fetchRewardsDetails()
-<<<<<<< HEAD
     this.patonback = this.appImages.patonback
     this.ycmd = this.appImages.ycmd
-=======
->>>>>>> team card component
   }
 }
 </script>
