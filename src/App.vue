@@ -1,14 +1,15 @@
 <template>
+
   <div v-if="!isUserDetailsLoading">
     <!-- <rr-left-nav /> -->
     <router-view class="rr-router-view"/>
   </div>
 </template>
-
 <script>
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 
+import RRHeaderComponent from './components/RRHeaderComponent.vue'
 import { RrCommonAction, RrCommonMutation, RrCommonState } from './store'
 
 @Component()
