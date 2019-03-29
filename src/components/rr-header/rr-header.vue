@@ -30,8 +30,8 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 
-export default class RrHeader extends Vue{
-  
+export default class RrHeader extends Vue {
+
 }
 </script>
 

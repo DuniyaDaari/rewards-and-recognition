@@ -1,5 +1,5 @@
 export let mockRewardsDetails = [{
-  id: '123',
+  id: '2',
   employeePid: 'P123456',
   rewardId: '123456',
   teamId: '789',
@@ -13,7 +13,7 @@ export let mockRewardsDetails = [{
   lastModifiedDate: '',
   name: 'Pat On The Back'
 }, {
-  id: '123',
+  id: '1',
   employeePid: 'P1240456',
   rewardId: '123454',
   teamId: '789',
@@ -25,9 +25,9 @@ export let mockRewardsDetails = [{
   createdDate: '',
   lastModifiedBy: '',
   lastModifiedDate: '',
-  name: 'Pat On The Back'
+  name: 'You Carried My Day'
 }, {
-  id: '1123',
+  id: '2',
   employeePid: 'P1240456',
   rewardId: '123454',
   teamId: '789',
