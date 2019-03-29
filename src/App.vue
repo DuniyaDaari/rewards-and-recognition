@@ -1,7 +1,7 @@
 <template>
 
   <div v-if="!isUserDetailsLoading">
-    <!-- <rr-left-nav /> -->
+    <rr-header />
     <router-view class="rr-router-view"/>
   </div>
 </template>
@@ -9,10 +9,14 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 
-import RRHeaderComponent from './components/RRHeaderComponent.vue'
+import RrHeader from './components/rr-header'
 import { RrCommonAction, RrCommonMutation, RrCommonState } from './store'
 
-@Component()
+@Component({
+  components: {
+    RrHeader
+  }
+})
 export default class App extends Vue {
   @RrCommonAction getUserDetails
   @RrCommonState isUserDetailsLoading
@@ -32,7 +36,7 @@ export default class App extends Vue {
 
 <style>
 @import './styles/main.scss';
-.rr-router-view {
-  padding-left: 20%;
+.rr-router-view{
+  padding-top:100px;
 }
 </style>
