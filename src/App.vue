@@ -28,6 +28,8 @@ export default class App extends Vue {
     this.images.rewards = require('./assets/my-rewards.png')
     this.images.teams = require('./assets/my-teams.png')
     this.images.admin = require('./assets/admin.png')
+    this.images.patonback = require('./assets/patonback.jpg')
+    this.images.ycmd = require('./assets/ycmd.jpg')
     this.setAppImages(this.images)
     this.getUserDetails()
   }
