@@ -4,16 +4,16 @@
       <div class="col-sm col-8">
         <ul class="nav nav-pills customClass ">
           <li class="nav-item">
-            <a class="nav-link active navColor" href="#">Rewards & Recognition</a>
+            <router-link class="nav-link active navColor" :to="{ name: 'home', params: {pid}}">Rewards & Recognition</router-link>
           </li>
-          <li class="nav-item">
-            <a class="nav-link navColor" href="#">My Rewards</a>
+          <li class="nav-item" v-if="rewardsTabVisible">
+            <router-link class="nav-link navColor" :to="{ name: 'rewards', params: {pid}}">My Rewards</router-link>
           </li>
-          <li class="nav-item">
-            <a class="nav-link navColor" href="#">My Teams</a>
+          <li class="nav-item" v-if="teamsTabVisible">
+            <router-link class="nav-link navColor" :to="{ name: 'teams', params: {pid}}">My Teams</router-link>
           </li>
-          <li class="nav-item">
-            <a class="nav-link navColor" href="#">Admin</a>
+          <li class="nav-item" v-if="adminTabVisible">
+            <router-link class="nav-link navColor" :to="{ name: 'admin', params: {pid}}">Admin</router-link>
           </li>
         </ul>
       </div>
@@ -29,10 +29,25 @@
 <script>
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
+import { RrCommonState } from '../../store'
 
 @Component()
 export default class RrHeader extends Vue {
+  @RrCommonState userDetails
+  @RrCommonState pagesVisible
 
+  pid = ''
+  rewardsTabVisible = false
+  teamsTabVisible = false
+  adminTabVisible = false
+
+  created () {
+    this.pid = this.userDetails.pid
+    this.rewardsTabVisible = this.pagesVisible.includes('rewards')
+    this.teamsTabVisible = this.pagesVisible.includes('teams')
+    this.adminTabVisible = this.pagesVisible.includes('admin')
+  }
+  
 }
 </script>
 

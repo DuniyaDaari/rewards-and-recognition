@@ -78,11 +78,11 @@ export function createRouter (vueInstance = Vue) {
         pageCategory: 'admin',
         title: 'Home'
       }
-    },
-    {
-      path: '*',
-      redirect: '/1234'
     }
+    // {
+    //   path: '*',
+    //   redirect: redirectToHome
+    // }
   ]
 
   let router = new Router({
@@ -94,12 +94,17 @@ export function createRouter (vueInstance = Vue) {
     if (to.meta.requiresAuth) {
       let userDetailsService = container.get(USER_DETAILS_SERVICE)
       let isUserAuthorized = await userDetailsService.isUserAuthorized(to.meta.pageCategory)
-      console.log(isUserAuthorized)
       isUserAuthorized ? next() : next({ name: 'home', params: { pid: from.params.pid } })
     } else {
       next()
     }
   })
+
+  // async function redirectToHome () {
+  //   let userDetailsService = container.get(USER_DETAILS_SERVICE)
+  //   let pid = await userDetailsService.fetchUserDetails().pid
+  //   router.push({ name: 'home', params: { pid } })
+  // }
 
   return router
 }

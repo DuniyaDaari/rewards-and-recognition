@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep'
 import { Register } from '../../di'
 // import axios from 'axios'
 
@@ -13,7 +14,7 @@ export default class UserDetailsService {
   }
 
   async getVisiblePages (details) {
-    let userDetails = details || await this.fetchUserDetails()
+    let userDetails = details ? cloneDeep(details) : await this.fetchUserDetails()
     let pagesVisible = []
 
     switch (userDetails.role) {

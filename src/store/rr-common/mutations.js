@@ -1,15 +1,21 @@
+import Vue from 'vue'
+
 export function setAppImages (state, images) {
-  state.appImages = { ...images }
+  // state.appImages = { ...images }
+  Vue.set(state, 'appImages', images)
 }
 
 export function setIsUserDetailsLoading (state, isLoading) {
-  state.isUserDetailsLoading = isLoading
+  // state.isUserDetailsLoading = isLoading
+  Vue.set(state, 'isUserDetailsLoading', isLoading)
 }
 
-export function setUserDetails (state, userDetails) {
-  state.userDetails = userDetails
+export function setUserDetails (state, details) {
+  // state.userDetails = details
+  Vue.set(state, 'userDetails', details)
 }
 
 export function setPagesVisible (state, pages) {
-  state.pagesVisible = [ ...pages ]
+  // state.pagesVisible = [ ...pages ]
+  Vue.set(state, 'pagesVisible', pages)
 }

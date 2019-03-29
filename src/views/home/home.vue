@@ -41,8 +41,6 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 
-import { LazyInject } from '../../di'
-import { COMMON_SERVICE } from '../../services/helpers/common'
 import RrCard from '../../components/rr-card'
 import { RrCommonState } from '../../store'
 
@@ -52,9 +50,9 @@ import { RrCommonState } from '../../store'
   }
 })
 export default class HomeView extends Vue {
-  @LazyInject(COMMON_SERVICE) commonService
   @RrCommonState appImages
   @RrCommonState pagesVisible
+  @RrCommonState userDetails
 
   myRewardsImagePath = ''
   myTeamsImagePath = ''
@@ -62,7 +60,7 @@ export default class HomeView extends Vue {
   pid = ''
 
   created () {
-    this.pid = this.$router.currentRoute.params.pid
+    this.pid = this.userDetails.pid
     this.myRewardsImagePath = this.pagesVisible.includes('rewards') ? this.appImages.rewards : undefined
     this.myTeamsImagePath = this.pagesVisible.includes('teams') ? this.appImages.teams : undefined
     this.adminImagePath = this.pagesVisible.includes('admin') ? this.appImages.admin : undefined

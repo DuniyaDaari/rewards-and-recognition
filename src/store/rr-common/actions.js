@@ -8,7 +8,6 @@ export async function getUserDetails ({ commit }) {
 
   let userDetails = await userDetailsService.fetchUserDetails()
   let pagesVisible = await userDetailsService.getVisiblePages(userDetails)
-  console.log(userDetails)
 
   commit('setUserDetails', userDetails)
   commit('setPagesVisible', pagesVisible)
