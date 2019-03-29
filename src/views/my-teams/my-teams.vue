@@ -4,7 +4,7 @@
     <div class="card teamCardMargin">
       <div class="card-header teamCardHeaderColor">{{team.name}}</div>
       <div class="card-body">
-        <h5 class="card-title">{{team.lineManager.firstName}} {{team.lineManager.middleName}} {{team.lineManager.lastName}} </h5>
+        <h6 class="card-title">{{team.lineManager.firstName}} {{team.lineManager.middleName}} {{team.lineManager.lastName}} </h6>
         <p class="card-text">
             Created by: {{team.lineManager.createdBy}} on {{team.lineManager.createdDate}} <br>
             {{team.lineManager.email}}
@@ -45,6 +45,7 @@ async created () {
         margin: 30px;
     }
     .teamCardHeaderColor {
-        background: #63a2d8;
+        background: #f0f4fe;
+        color: #1f2c6d;
     }
 </style>
