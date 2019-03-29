@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-for="team in teamsDetails" :key="team.teamid">
-    <div class="card">
-      <div class="card-header">{{team.name}}</div>
+    <div class="card teamCardMargin">
+      <div class="card-header teamCardHeaderColor">{{team.name}}</div>
       <div class="card-body">
         <h5 class="card-title">{{team.lineManager.firstName}} {{team.lineManager.middleName}} {{team.lineManager.lastName}} </h5>
         <p class="card-text">
@@ -39,3 +39,12 @@ async created () {
 }
 }
 </script>
+
+<style>
+    .teamCardMargin{
+        margin: 30px;
+    }
+    .teamCardHeaderColor {
+        background: #63a2d8;
+    }
+</style>
