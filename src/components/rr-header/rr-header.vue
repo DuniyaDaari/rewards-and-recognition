@@ -61,7 +61,7 @@ export default class RrHeader extends Vue {
   top: -1px;
   /* opacity: 0.8; */
   height: 80px;
-  z-index: 1;
+  z-index: 2;
 }
 #profilePic {
   font-size: 30px;
