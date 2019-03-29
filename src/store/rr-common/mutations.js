@@ -19,3 +19,7 @@ export function setPagesVisible (state, pages) {
   // state.pagesVisible = [ ...pages ]
   Vue.set(state, 'pagesVisible', pages)
 }
+
+export function setTotalRewardPoints (state, totalRewardPoints) {
+  Vue.set(state, 'totalRewardPoints', totalRewardPoints)
+}

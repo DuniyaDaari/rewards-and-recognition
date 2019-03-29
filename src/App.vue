@@ -48,6 +48,11 @@ export default class App extends Vue {
       this.images.rewards = require('./assets/my-rewards.png')
       this.images.teams = require('./assets/my-teams.png')
       this.images.admin = require('./assets/admin.png')
+      this.images.patonback = require('./assets/patonback.jpg')
+      this.images.ycmd = require('./assets/ycmd.jpg')
+      this.images.paytm = require('./assets/paytm.jpg')
+      this.images.amazon = require('./assets/amazon.jpg')
+      this.images.flipkart = require('./assets/flipkart.jpg')
       this.setAppImages(this.images)
     }
   }
@@ -57,6 +62,6 @@ export default class App extends Vue {
 <style>
 @import './styles/main.scss';
 .rr-router-view{
-  padding: 100px 4%;
+  padding: 20px 4%;
 }
 </style>

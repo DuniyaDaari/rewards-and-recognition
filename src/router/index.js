@@ -9,6 +9,7 @@ let AdminView = () => import('../views/admin')
 let HomeView = () => import('../views/home')
 let MyRewardsView = () => import('../views/my-rewards')
 let MyTeamsView = () => import('../views/my-teams')
+let RedeemPoints = () => import('../views/redeem-points')
 
 export function createRouter (vueInstance = Vue) {
   Component.registerHooks([
@@ -42,11 +43,11 @@ export function createRouter (vueInstance = Vue) {
     {
       path: '/:pid/redeem-rewards',
       name: 'redeem',
-      component: HomeView,
+      component: RedeemPoints,
       meta: {
         requiresAuth: true,
         pageCategory: 'rewards',
-        title: 'Home'
+        title: 'Redeem Points'
       }
     },
     {
