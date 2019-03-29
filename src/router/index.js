@@ -9,6 +9,7 @@ let AdminView = () => import('../views/admin')
 let HomeView = () => import('../views/home')
 let MyRewardsView = () => import('../views/my-rewards')
 let MyTeamsView = () => import('../views/my-teams')
+let TeamDataView = () => import('../views/team-data')
 
 export function createRouter (vueInstance = Vue) {
   Component.registerHooks([
@@ -62,7 +63,7 @@ export function createRouter (vueInstance = Vue) {
     {
       path: '/:pid/team/:teamId',
       name: 'teamDetails',
-      component: HomeView,
+      component: TeamDataView,
       meta: {
         requiresAuth: true,
         pageCategory: 'teams',
