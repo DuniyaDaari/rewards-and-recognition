@@ -27,7 +27,6 @@ export default class App extends Vue {
   images = {}
   isDataLoaded = false
 
-
   async created () {
     this.setImages()
     if (!this.userDetails) {

@@ -47,7 +47,6 @@ export default class RrHeader extends Vue {
     this.teamsTabVisible = this.pagesVisible.includes('teams')
     this.adminTabVisible = this.pagesVisible.includes('admin')
   }
-  
 }
 </script>
 
