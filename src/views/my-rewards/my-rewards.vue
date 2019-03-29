@@ -25,12 +25,12 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import Vue from 'vue'
+import { Component } from 'vue-property-decorator'
 
-import { LazyInject } from "../../di";
-import { USER_DETAILS_SERVICE } from "../../services/api/userDetails";
-import { REWARDS_DETAILS_SERVICE } from "../../services/api/rewardsDetails";
+import { LazyInject } from '../../di'
+import { USER_DETAILS_SERVICE } from '../../services/api/userDetails'
+import { REWARDS_DETAILS_SERVICE } from '../../services/api/rewardsDetails'
 
 @Component()
 export default class MyRewardsView extends Vue {
@@ -39,9 +39,9 @@ export default class MyRewardsView extends Vue {
 
   rewardDetails = [];
 
-  async created() {
-    this.userDetailsService.isUserAuthorized("rewards");
-    this.rewardDetails = await this.rewardsDetailsService.fetchRewardsDetails();
+  async created () {
+    this.userDetailsService.isUserAuthorized('rewards')
+    this.rewardDetails = await this.rewardsDetailsService.fetchRewardsDetails()
   }
 }
 </script>
