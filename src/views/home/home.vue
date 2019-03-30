@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- <h1 class="display-4 welcomeHeading">Welcome to your dashboard!</h1> -->
     <h1 class="welcomeHeading">Welcome to your dashboard!</h1>
     <br/>
     <div class="rr-home">

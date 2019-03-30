@@ -35,13 +35,13 @@ import { Component } from 'vue-property-decorator'
 import { LazyInject } from '../../di'
 import { USER_DETAILS_SERVICE } from '../../services/api/userDetails'
 import { REWARD_DATA_SERVICE } from '../../services/api/configure-reward-api/rewardData'
-import { RrCommonState } from '../../store'
+// import { RrCommonState } from '../../store'
 
 @Component()
 export default class TeamDataView extends Vue {
   @LazyInject(USER_DETAILS_SERVICE) userDetailsService;
   @LazyInject(REWARD_DATA_SERVICE) rewardDataService;
-  
+
   rewardsData = [];
   async created () {
     this.userDetailsService.isUserAuthorized('reward')
