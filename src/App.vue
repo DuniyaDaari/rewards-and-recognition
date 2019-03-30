@@ -3,6 +3,7 @@
   <div v-if="!isUserDetailsLoading">
     <rr-header v-if="isDataLoaded" />
     <router-view v-if="isDataLoaded" class="rr-router-view"/>
+    <rr-footer />
   </div>
 </template>
 <script>
@@ -10,11 +11,13 @@ import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 
 import RrHeader from './components/rr-header'
+import RrFooter from './components/rr-footer'
 import { RrCommonAction, RrCommonMutation, RrCommonState } from './store'
 
 @Component({
   components: {
-    RrHeader
+    RrHeader,
+    RrFooter
   }
 })
 export default class App extends Vue {
