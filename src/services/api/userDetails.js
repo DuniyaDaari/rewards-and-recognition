@@ -9,7 +9,12 @@ export const USER_DETAILS_SERVICE = Symbol('UserDetailsService')
 @Register(USER_DETAILS_SERVICE)
 export default class UserDetailsService {
   fetchUserDetails () {
-    // return axios.get('/rewards-and-recognition-rest/user-roles').then(({ data }) => data)
+    // return axios.get('/rewards-and-recognition-rest/user-roles').then(function ({data}) {
+    //   console.log(data)
+    //   return data
+    // }).catch(function (error) {
+    //   console.log(error)
+    // })
     return Promise.resolve(mockUserDetails)
   }
 

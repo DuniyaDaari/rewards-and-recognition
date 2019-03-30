@@ -62,11 +62,11 @@ export default class RedeemPoints extends Vue {
   amazonImg = ''
   flipkartImg = ''
   async created () {
-    this.pid = this.userDetails.pid;
+    this.pid = this.userDetails.pid
     this.userDetailsService.isUserAuthorized('rewards')
-    this.paytmImg = this.appImages.paytm;
-    this.amazonImg = this.appImages.amazon;
-    this.flipkartImg = this.appImages.flipkart;
+    this.paytmImg = this.appImages.paytm
+    this.amazonImg = this.appImages.amazon
+    this.flipkartImg = this.appImages.flipkart
   }
 }
 </script>

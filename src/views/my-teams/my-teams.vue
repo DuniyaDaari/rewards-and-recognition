@@ -10,8 +10,7 @@
             {{team.lineManager.email}}
         </p>
             <router-link :to="{ name:'teamDetails', params: { pid, teamId:team.id } }" class="card-link">Details</router-link>
-
-      </div>
+    </div>
     </div>
     </div>
   </div>
@@ -39,13 +38,3 @@ async created () {
 }
 }
 </script>
-
-<style>
-    .teamCardMargin{
-        margin: 30px;
-    }
-    .teamCardHeaderColor {
-        background: #f0f4fe;
-        color: #1f2c6d;
-    }
-</style>
