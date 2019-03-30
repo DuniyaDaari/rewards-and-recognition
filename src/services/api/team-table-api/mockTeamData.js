@@ -1,20 +1,20 @@
 export let mockTeamData = {
-  'id': 1,
-  'name': 'Peacock',
-  'lineManager': {
-    'createdBy': 'Admin',
-    'createdDate': '2012-12-31',
-    'lastModifiedBy': 'Admin',
-    'lastModifiedDate': '2012-12-31',
-    'firstName': 'First',
-    'lastName': 'Manager',
-    'middleName': '',
-    'dateOfJoining': '2012-12-31',
-    'status': '1',
-    'lineManagerPid': 'P83',
-    'email': 'FirstManager@test.com',
-    'designation': 'Manager',
-    'pid': 'P100'
+  'id': 22,
+  'name': 'Mercury',
+  lineManager: {
+    createdBy: 'P1024',
+    createdDate: '2013-02-02',
+    lastModifiedBy: 'P1024',
+    lastModifiedDate: '2013-02-02',
+    firstName: 'Sulabh',
+    lastName: 'Sauchalaya',
+    middleName: 'Ji',
+    dateOfJoining: '2013-02-02',
+    status: '1',
+    lineManagerPid: 'P1047',
+    email: 'SulabhDeveloper@test.com',
+    designation: 'Developer',
+    pid: 'P1026'
   },
   'status': true,
   'employees': [{
