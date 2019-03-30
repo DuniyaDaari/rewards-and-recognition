@@ -37,6 +37,6 @@ export let mockTeamsDetails = [
       designation: 'Developer',
       pid: 'P1026'
     },
-    status: true
+    status: false
   }
 ]

@@ -7,7 +7,7 @@ export const REWARD_DATA_SERVICE = Symbol('RewardDataService')
 
 @Register(REWARD_DATA_SERVICE)
 export default class RewardDataService {
-  fetchTeamsDetails () {
+  fetchRewards () {
     // return axios.get('/rewards').then(({ data }) => data)
     return Promise.resolve(mockRewardData)
   }

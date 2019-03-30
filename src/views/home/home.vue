@@ -1,39 +1,43 @@
 <template>
-  <div class="rr-home">
-    <div
-      class="rr-flex-one"
-      v-if="myRewardsImagePath">
-      <rr-card
-        :image-path="myRewardsImagePath"
-        card-heading="View my rewards"
-        card-text="Click here to view the rewards you have received from your organization"
-        :button-route="{ name:'rewards', params: { pid } }"
-        >
-      </rr-card>
-    </div>
+  <div>
+    <h1 class="welcomeHeading">Welcome to your dashboard!</h1>
+    <br/>
+    <div class="rr-home">
+      <div
+        class="rr-flex-one"
+        v-if="myRewardsImagePath">
+        <rr-card
+          :image-path="myRewardsImagePath"
+          card-heading="View my rewards"
+          card-text="Click here to view the rewards you have received from your organization"
+          :button-route="{ name:'rewards', params: { pid } }"
+          >
+        </rr-card>
+      </div>
 
-    <div
-      class="rr-flex-one"
-      v-if="myTeamsImagePath">
-      <rr-card
-        :image-path="myTeamsImagePath"
-        card-heading="View my teams"
-        card-text="Click here to view the teams under you and view their rewards"
-        :button-route="{ name:'teams', params: { pid } }"
-        >
-      </rr-card>
-    </div>
+      <div
+        class="rr-flex-one"
+        v-if="myTeamsImagePath">
+        <rr-card
+          :image-path="myTeamsImagePath"
+          card-heading="View my teams"
+          card-text="Click here to view the teams under you and view their rewards"
+          :button-route="{ name:'teams', params: { pid } }"
+          >
+        </rr-card>
+      </div>
 
-    <div
-      class="rr-flex-one"
-      v-if="adminImagePath">
-      <rr-card
-        :image-path="adminImagePath"
-        card-heading="Configure"
-        card-text="Click here to configure the awards your organization"
-        :button-route="{ name:'admin', params: { pid } }"
-        >
-      </rr-card>
+      <div
+        class="rr-flex-one"
+        v-if="adminImagePath">
+        <rr-card
+          :image-path="adminImagePath"
+          card-heading="Configure"
+          card-text="Click here to configure the awards your organization"
+          :button-route="{ name:'admin', params: { pid } }"
+          >
+        </rr-card>
+      </div>
     </div>
   </div>
 </template>
