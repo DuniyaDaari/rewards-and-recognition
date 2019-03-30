@@ -45,7 +45,7 @@ export default class TeamDataView extends Vue {
   rewardsData = [];
   async created () {
     this.userDetailsService.isUserAuthorized('reward')
-    this.rewardsData = await this.rewardDataService.fetchTeamsDetails()
+    this.rewardsData = await this.rewardDataService.fetchRewards()
   }
 }
 </script>

@@ -2,14 +2,18 @@
   <div>
     <div v-for="team in teamsDetails" :key="team.teamid">
     <div class="card teamCardMargin">
-      <div class="card-header teamCardHeaderColor">{{team.name}}</div>
+      <div class="card-header teamCardHeaderColor">
+        {{team.name}}
+        <span v-if="team.status"><button type="button" class="btn btn-primary float-right" disabled>ACTIVE</button></span>
+        <span v-if="!team.status"><button type="button" class="btn btn-secondary float-right" disabled>INACTIVE</button></span>
+      </div>
       <div class="card-body">
         <h6 class="card-title">{{team.lineManager.firstName}} {{team.lineManager.middleName}} {{team.lineManager.lastName}} </h6>
         <p class="card-text">
             Created by: {{team.lineManager.createdBy}} on {{team.lineManager.createdDate}} <br>
             {{team.lineManager.email}}
         </p>
-            <router-link :to="{ name:'teamDetails', params: { pid, teamId:team.id } }" class="card-link">Details</router-link>
+        <router-link v-if="team.status" :to="{ name:'teamDetails', params: { pid, teamId:team.id } }" class="card-link">Details</router-link>
     </div>
     </div>
     </div>
