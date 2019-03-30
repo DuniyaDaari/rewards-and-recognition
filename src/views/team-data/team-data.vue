@@ -67,12 +67,12 @@
 </template>
 
 <script>
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
-import { LazyInject } from "../../di";
-import { USER_DETAILS_SERVICE } from "../../services/api/userDetails";
-import { TEAM_DATA_SERVICE } from "../../services/api/team-table-api/teamData";
-import { RrCommonState } from "../../store";
+import Vue from 'vue'
+import { Component } from 'vue-property-decorator'
+import { LazyInject } from '../../di'
+import { USER_DETAILS_SERVICE } from '../../services/api/userDetails'
+import { TEAM_DATA_SERVICE } from '../../services/api/team-table-api/teamData'
+import { RrCommonState } from '../../store'
 
 @Component()
 export default class TeamDataView extends Vue {
@@ -80,18 +80,18 @@ export default class TeamDataView extends Vue {
   @LazyInject(TEAM_DATA_SERVICE) teamDataService;
   @RrCommonState appImages;
   rewardDetails = [];
-  pid = "";
+  pid = '';
   teamData = [];
-  teamId = "";
-  async created() {
-    this.pid = this.$router.currentRoute.params.pid;
-    this.userDetailsService.isUserAuthorized("teams");
+  teamId = '';
+  async created () {
+    this.pid = this.$router.currentRoute.params.pid
+    this.userDetailsService.isUserAuthorized('teams')
     this.teamData = await this.teamDataService.fetchTeamsDetails(
       this.pid,
       this.teamId
-    );
-    this.patonback = this.appImages.patonback;
-    this.ycmd = this.appImages.ycmd;
+    )
+    this.patonback = this.appImages.patonback
+    this.ycmd = this.appImages.ycmd
   }
 }
 </script>
