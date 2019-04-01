@@ -8,7 +8,8 @@ let defaultState = {
   isUserDetailsLoading: true,
   appImages: {},
   pagesVisible: [],
-  totalRewardPoints: 0
+  totalRewardPoints: 0,
+  userDetails: {}
 }
 
 export function createModule () {

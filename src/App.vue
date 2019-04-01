@@ -1,13 +1,13 @@
 <template>
   <div>
-    <rr-header v-if="isAuthenticated" />
+    <rr-header v-if="Object.keys(userDetails).length != 0" />
     <router-view class="rr-router-view"/>
-    <rr-footer />
+    <rr-footer v-if="Object.keys(userDetails).length != 0" />
   </div>
 </template>
 <script>
 import Vue from 'vue'
-import { Component, Watch } from 'vue-property-decorator'
+import { Component } from 'vue-property-decorator'
 
 import RrHeader from './components/rr-header'
 import RrFooter from './components/rr-footer'
@@ -21,33 +21,19 @@ import { RrCommonAction, RrCommonMutation, RrCommonState } from './store'
 })
 export default class App extends Vue {
   @RrCommonAction getUserDetails
+
   @RrCommonState isUserDetailsLoading
   @RrCommonState userDetails
   @RrCommonState appImages
+
   @RrCommonMutation setAppImages
 
   images = {}
   isDataLoaded = false
   isAuthenticated = false
 
-  @Watch('$route')
-  async checkAuthentication () {
-    this.isAuthenticated = await this.$auth.isAuthenticated()
-  }
-
   async created () {
     this.setImages()
-
-    // let isAuthenticated = await this.$auth.isAuthenticated()
-
-    // if (isAuthenticated) {
-    //   let user = await this.$auth.getUser()
-    //   let email = user.email
-    //   await this.getUserDetails(email)
-    //   this.$router.push({ name: 'home', params: { pid: this.userDetails.pid } })
-    // } else {
-    //   this.$auth.loginRedirect('/')
-    // }
   }
 
   setImages () {

@@ -34,11 +34,11 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-              >Profile</a>
+              >{{userEmail}}</a>
               <div class="dropdown-menu profileDropDown" aria-labelledby="navDropDownLink">
                 <a class="dropdown-item" href="#">Preferences</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Logout</a>
+                <a class="dropdown-item" @click="logout">Logout</a>
               </div>
             </li>
           </ul>
@@ -56,6 +56,7 @@ import { RrCommonState } from '../../store'
 @Component()
 export default class RrHeader extends Vue {
   @RrCommonState userDetails;
+  @RrCommonState userEmail;
   @RrCommonState pagesVisible;
 
   pid = '';
@@ -68,6 +69,12 @@ export default class RrHeader extends Vue {
     this.rewardsTabVisible = this.pagesVisible.includes('rewards')
     this.teamsTabVisible = this.pagesVisible.includes('teams')
     this.adminTabVisible = this.pagesVisible.includes('admin')
+  }
+
+  async logout () {
+    await this.$auth.logout()
+    await this.$auth.getUser()
+    this.$router.push('/')
   }
 }
 </script>
