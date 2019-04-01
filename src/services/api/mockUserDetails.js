@@ -5,6 +5,6 @@ export let mockUserDetails = {
   // 'EMPLOYEE_ADMIN',
   // 'EMPLOYEE_MANAGER_ADMIN',
   role: 'EMPLOYEE_MANAGER_ADMIN',
-  pid: 12345678
+  pid: 'P106'
   // ]
 }
