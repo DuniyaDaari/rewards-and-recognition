@@ -1,12 +1,8 @@
 <template>
-  <div>
-    <!-- <h1 class="display-4 welcomeHeading">Welcome to your dashboard!</h1> -->
-    <h1 class="welcomeHeading">Welcome to your dashboard!</h1>
-    <br/>
-    <div class="rr-home">
-      <div
-        class="rr-flex-one"
-        v-if="myRewardsImagePath">
+  <div class="">
+    <h1 class="display-4 welcomeHeading">Welcome to your dashboard!</h1>
+    <div class="row mt-5">
+
         <rr-card
           :image-path="myRewardsImagePath"
           card-heading="View my rewards"
@@ -14,31 +10,22 @@
           :button-route="{ name:'rewards', params: { pid } }"
           >
         </rr-card>
-      </div>
-
-      <div
-        class="rr-flex-one"
-        v-if="myTeamsImagePath">
         <rr-card
+          v-if="myTeamsImagePath"
           :image-path="myTeamsImagePath"
           card-heading="View my teams"
           card-text="Click here to view the teams under you and view their rewards"
           :button-route="{ name:'teams', params: { pid } }"
           >
         </rr-card>
-      </div>
-
-      <div
-        class="rr-flex-one"
-        v-if="adminImagePath">
         <rr-card
+          v-if="adminImagePath"
           :image-path="adminImagePath"
           card-heading="Configure"
-          card-text="Click here to configure the awards your organization"
+          card-text="Click here to configure the awards of your organization and add teams/employees"
           :button-route="{ name:'admin', params: { pid } }"
           >
         </rr-card>
-      </div>
     </div>
   </div>
 </template>
