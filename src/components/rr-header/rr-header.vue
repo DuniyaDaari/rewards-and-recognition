@@ -2,12 +2,18 @@
   <div id="headerBg" class="container-fluid no-padding">
     <div class="row">
       <div class="col-sm col-8">
-        <ul class="nav nav-pills customClass ">
+        <ul class="nav nav-pills">
           <li class="nav-item">
-            <router-link class="nav-link active navColor" :to="{ name: 'home', params: {pid}}">Rewards & Recognition</router-link>
+            <router-link
+              class="nav-link active navColor"
+              :to="{ name: 'home', params: {pid}}"
+            >Rewards & Recognition</router-link>
           </li>
           <li class="nav-item" v-if="rewardsTabVisible">
-            <router-link class="nav-link navColor" :to="{ name: 'rewards', params: {pid}}">My Rewards</router-link>
+            <router-link
+              class="nav-link navColor"
+              :to="{ name: 'rewards', params: {pid}}"
+            >My Rewards</router-link>
           </li>
           <li class="nav-item" v-if="teamsTabVisible">
             <router-link class="nav-link navColor" :to="{ name: 'teams', params: {pid}}">My Teams</router-link>
@@ -18,8 +24,24 @@
         </ul>
       </div>
       <div class="col-sm col-4">
-        <span class="float-right ">
-          <i id="profilePic" class="fas fa-user-circle"></i>
+        <span class="float-right">
+          <ul class="navbar-nav float-right">
+            <li class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                id="navDropDownLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >Profile</a>
+              <div class="dropdown-menu profileDropDown" aria-labelledby="navDropDownLink">
+                <a class="dropdown-item" href="#">Preferences</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Logout</a>
+              </div>
+            </li>
+          </ul>
         </span>
       </div>
     </div>
@@ -33,13 +55,13 @@ import { RrCommonState } from '../../store'
 
 @Component()
 export default class RrHeader extends Vue {
-  @RrCommonState userDetails
-  @RrCommonState pagesVisible
+  @RrCommonState userDetails;
+  @RrCommonState pagesVisible;
 
-  pid = ''
-  rewardsTabVisible = false
-  teamsTabVisible = false
-  adminTabVisible = false
+  pid = '';
+  rewardsTabVisible = false;
+  teamsTabVisible = false;
+  adminTabVisible = false;
 
   created () {
     this.pid = this.userDetails.pid
@@ -76,5 +98,8 @@ export default class RrHeader extends Vue {
 }
 .navColor {
   color: #fff;
+}
+.profileDropDown {
+  left: -85px;
 }
 </style>
