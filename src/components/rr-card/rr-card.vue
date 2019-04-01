@@ -1,23 +1,16 @@
 <template>
-     <v-layout>
-      <v-flex xs12 sm6 offset-sm3>
-        <v-card>
-          <v-img :src="imagePath" aspect-ratio="2.75"></v-img>
-
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline mb-0">{{ cardHeading }}</h3>
-              <div>{{ cardText }}</div>
-            </div>
-          </v-card-title>
-
-          <v-card-actions>
-            <router-link :to="buttonRoute"><v-btn flat color="orange">Know more</v-btn></router-link>
-            <!-- <v-btn flat color="orange">Explore</v-btn> -->
-          </v-card-actions>
-        </v-card>
-      </v-flex>
-    </v-layout>
+    <div class="col-sm-4">
+      <div class="mr-2 mb-2">
+        <div class="card">
+          <img class="card-img-top" :src="imagePath" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{cardHeading}}</h5>
+            <p class="card-text">{{cardText}}</p>
+            <router-link :to="buttonRoute">Get Started -></router-link>
+          </div>
+        </div>
+      </div>
+    </div>
 </template>
 <script>
 import Vue from 'vue'
@@ -25,9 +18,9 @@ import { Component, Prop } from 'vue-property-decorator'
 
 @Component()
 export default class RrCard extends Vue {
-    @Prop({ type: String }) imagePath
-    @Prop({ type: String }) cardHeading;
-    @Prop({ type: String }) cardText;
-    @Prop({ type: Object }) buttonRoute;
+  @Prop({ type: String }) imagePath;
+  @Prop({ type: String }) cardHeading;
+  @Prop({ type: String }) cardText;
+  @Prop({ type: Object }) buttonRoute;
 }
 </script>
