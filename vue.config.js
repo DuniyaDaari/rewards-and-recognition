@@ -8,5 +8,8 @@ module.exports = {
         { from: 'src/assets', to: 'img', force: true }
       ])
     ]
+  },
+  devServer: {
+    port: 8090
   }
 }

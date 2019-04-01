@@ -8,7 +8,7 @@ export const USER_DETAILS_SERVICE = Symbol('UserDetailsService')
 
 @Register(USER_DETAILS_SERVICE)
 export default class UserDetailsService {
-  fetchUserDetails () {
+  fetchUserDetails (emailId) {
     // return axios.get('/rewards-and-recognition-rest/user-roles').then(function ({data}) {
     //   console.log(data)
     //   return data

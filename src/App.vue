@@ -1,14 +1,13 @@
 <template>
-
-  <div v-if="!isUserDetailsLoading">
-    <rr-header v-if="isDataLoaded" />
-    <router-view v-if="isDataLoaded" class="rr-router-view"/>
+  <div>
+    <rr-header v-if="isAuthenticated" />
+    <router-view class="rr-router-view"/>
     <rr-footer />
   </div>
 </template>
 <script>
 import Vue from 'vue'
-import { Component } from 'vue-property-decorator'
+import { Component, Watch } from 'vue-property-decorator'
 
 import RrHeader from './components/rr-header'
 import RrFooter from './components/rr-footer'
@@ -29,25 +28,30 @@ export default class App extends Vue {
 
   images = {}
   isDataLoaded = false
+  isAuthenticated = false
+
+  @Watch('$route')
+  async checkAuthentication () {
+    this.isAuthenticated = await this.$auth.isAuthenticated()
+  }
 
   async created () {
     this.setImages()
-    if (!this.userDetails) {
-      await this.getUserDetails()
-    }
 
-    this.routeToHome()
-    this.isDataLoaded = true
-  }
+    // let isAuthenticated = await this.$auth.isAuthenticated()
 
-  routeToHome () {
-    if (!this.$router.currentRoute.params || !this.$router.currentRoute.params.pid) {
-      this.$router.push({ name: 'home', params: { pid: this.userDetails.pid } })
-    }
+    // if (isAuthenticated) {
+    //   let user = await this.$auth.getUser()
+    //   let email = user.email
+    //   await this.getUserDetails(email)
+    //   this.$router.push({ name: 'home', params: { pid: this.userDetails.pid } })
+    // } else {
+    //   this.$auth.loginRedirect('/')
+    // }
   }
 
   setImages () {
-    if (JSON.stringify(this.appImages).trim() === '{}') { // change logic for checking empty object
+    if (Object.keys(this.appImages).length === 0) { // change logic for checking empty object
       this.images.rewards = require('./assets/my-rewards.png')
       this.images.teams = require('./assets/my-teams.png')
       this.images.admin = require('./assets/admin.png')

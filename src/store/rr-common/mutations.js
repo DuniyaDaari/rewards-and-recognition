@@ -1,5 +1,9 @@
 import Vue from 'vue'
 
+export function setUserEmail (state, email) {
+  Vue.set(state, 'userEmail', email)
+}
+
 export function setAppImages (state, images) {
   // state.appImages = { ...images }
   Vue.set(state, 'appImages', images)

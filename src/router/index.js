@@ -1,9 +1,10 @@
+import Auth from '@okta/okta-vue'
+
 import Vue from 'vue'
 import Router from 'vue-router'
 import Component from 'vue-class-component'
 
-import container from '../di'
-import { USER_DETAILS_SERVICE } from '../services/api/userDetails'
+import LoginView from '../views/login'
 
 let AdminView = () => import('../views/admin')
 let HomeView = () => import('../views/home')
@@ -20,15 +21,27 @@ export function createRouter (vueInstance = Vue) {
     'beforeRouteUpdate'
   ])
 
+  vueInstance.use(Auth, {
+    issuer: 'https://dev-841967.okta.com/oauth2/default',
+    client_id: '0oaejf7f3YM1av6DK356',
+    redirect_uri: window.location.origin + '/implicit/callback',
+    scope: 'openid email'
+  })
+
   vueInstance.use(Router)
 
   let routes = [
+    {
+      path: '/',
+      name: 'login',
+      component: LoginView
+    },
     {
       path: '/:pid',
       name: 'home',
       component: HomeView,
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
         title: 'Home'
       }
     },
@@ -91,11 +104,15 @@ export function createRouter (vueInstance = Vue) {
         pageCategory: 'admin',
         title: 'Home'
       }
+    },
+    {
+      path: '/implicit/callback',
+      component: Auth.handleCallback()
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
-    // {
-    //   path: '*',
-    //   redirect: redirectToHome
-    // }
   ]
 
   let router = new Router({
@@ -103,21 +120,7 @@ export function createRouter (vueInstance = Vue) {
     routes
   })
 
-  router.beforeEach(async function (to, from, next) {
-    if (to.meta.requiresAuth) {
-      let userDetailsService = container.get(USER_DETAILS_SERVICE)
-      let isUserAuthorized = await userDetailsService.isUserAuthorized(to.meta.pageCategory)
-      isUserAuthorized ? next() : next({ name: 'home', params: { pid: from.params.pid } })
-    } else {
-      next()
-    }
-  })
-
-  // async function redirectToHome () {
-  //   let userDetailsService = container.get(USER_DETAILS_SERVICE)
-  //   let pid = await userDetailsService.fetchUserDetails().pid
-  //   router.push({ name: 'home', params: { pid } })
-  // }
+  router.beforeEach(vueInstance.prototype.$auth.authRedirectGuard())
 
   return router
 }

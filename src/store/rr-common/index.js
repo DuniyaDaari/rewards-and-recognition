@@ -4,6 +4,7 @@ import * as actions from './actions'
 import * as mutations from './mutations'
 
 let defaultState = {
+  userEmail: '',
   isUserDetailsLoading: true,
   appImages: {},
   pagesVisible: [],
