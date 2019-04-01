@@ -53,7 +53,7 @@ export default class MyRewardsView extends Vue {
   async created () {
     this.pid = this.userDetails.pid
     this.userDetailsService.isUserAuthorized('rewards')
-    this.rewardDetails = await this.rewardsDetailsService.fetchRewardsDetails()
+    this.rewardDetails = await this.rewardsDetailsService.fetchRewardsDetails(this.pid)
     this.rewardImages = {}
     this.rewardImages[2] = this.appImages.patonback
     this.rewardImages[1] = this.appImages.ycmd

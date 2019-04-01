@@ -62,7 +62,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary" :disabled="!modalData.reward.comments || modalData.reward.comments.trim() == ''">Submit</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" @click="nominateReward()" :disabled="!modalData.reward.comments || modalData.reward.comments.trim() == ''">Submit</button>
                     </div>
                   </div>
                 </div>
@@ -92,6 +92,7 @@ export default class TeamDataView extends Vue {
   teamData = [];
   teamId = '';
   showModal = false;
+  message ='';
   modalData = {
     reward: {},
     employee: {}
@@ -99,15 +100,15 @@ export default class TeamDataView extends Vue {
 
   async created () {
     this.pid = this.$router.currentRoute.params.pid
+    this.teamId = this.$router.currentRoute.params.teamId
     this.userDetailsService.isUserAuthorized('teams')
     this.teamData = await this.teamDataService.fetchTeamsDetails(
-      this.pid,
       this.teamId
     )
   }
+
+  async nominateReward () {
+    this.message = await this.teamDataService.assignRewardToEmployee(this.modalData.employee.pid, this.modalData.reward.id, this.teamId, this.pid, this.modalData.reward.comments)
+  }
 }
 </script>
-
-<style>
-
-</style>

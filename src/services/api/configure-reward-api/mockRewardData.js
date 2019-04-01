@@ -3,7 +3,7 @@ export let mockRewardData = [
     'id': 1,
     'rewardName': 'You Carried My Day',
     'description': 'If someone helps you out',
-    'rewardPoints': 50,
+    'rewardPoints': 150,
     'status': true,
     'createdBy': 'P1000',
     'createdDate': '2019-03-28',
