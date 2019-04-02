@@ -23,24 +23,26 @@
           @click="redeemRewardPoints">Redeem</button>
       </div>
     </form>
-    <div class="row mt-5 justify-content-around">
-      <div class="col-sm-4">
+    <div class="row mt-5 justify-content-start">
+      <div class="col-sm-3">
         <div class="card">
           <img :src="amazonImg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Amazon Gift Cards: Buy Gift cards, gift vouchers and e-gift cards online from popular brands in India</p>
-          </div>
           <div class="card-body">
             <a href="#" class="card-link">Redeem</a>
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <div class="card">
           <img :src="flipkartImg" class="card-img-top" alt="...">
           <div class="card-body">
-            <p class="card-text">The Gift Cards can be redeemed online against Sellers listed on www.flipkart.com or Flipkart Mobile App or Flipkart m-site ("Platform") .</p>
+            <a href="#" class="card-link">Redeem</a>
           </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="card">
+          <img :src="fitbitImg" class="card-img-top" alt="...">
           <div class="card-body">
             <a href="#" class="card-link">Redeem</a>
           </div>
@@ -102,6 +104,7 @@ export default class RedeemPoints extends Vue {
     this.paytmImg = this.appImages.paytm
     this.amazonImg = this.appImages.amazon
     this.flipkartImg = this.appImages.flipkart
+    this.fitbitImg = this.appImages.fitbit
 
     if (this.totalRewardPoints === 0) {
       this.setTotalRewardPoints(localStorage.getItem(`${this.userDetails.pid}TRP`))

@@ -5,9 +5,9 @@
         <ul class="nav nav-pills">
           <li class="nav-item">
             <router-link
-              class="nav-link active navColor"
+              class=""
               :to="{ name: 'home', params: {pid}}"
-            >Rewards & Recognition</router-link>
+            ><img :src="rnrImg" class="logo"/></router-link>
           </li>
           <li class="nav-item" v-if="rewardsTabVisible">
             <router-link
@@ -59,6 +59,9 @@ export default class RrHeader extends Vue {
   @RrCommonState userDetails;
   @RrCommonState userEmail;
   @RrCommonState pagesVisible;
+  @RrCommonState appImages;
+
+  rnrImg = '';
 
   get rewardsTabVisible () {
     return this.pagesVisible.includes('rewards')
@@ -80,6 +83,10 @@ export default class RrHeader extends Vue {
 
   get pid () {
     return this.userDetails.pid
+  }
+
+  created () {
+    this.rnrImg = this.appImages.rnr
   }
 }
 </script>
@@ -113,5 +120,8 @@ export default class RrHeader extends Vue {
 }
 .profileDropDown {
   left: -85px;
+}
+.logo{
+  height:50px;
 }
 </style>

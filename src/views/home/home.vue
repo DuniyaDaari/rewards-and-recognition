@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="display-4 welcomeHeading">Welcome to your dashboard!</h1>
+    <h1 class="display-4">Welcome to your dashboard!</h1>
     <div class="row mt-5">
 
         <rr-card
