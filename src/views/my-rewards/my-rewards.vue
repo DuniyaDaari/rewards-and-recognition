@@ -7,8 +7,8 @@
       </div>
     </div>
     <div class="row">
-    <div class="col-sm-4" v-for="reward in rewardDetails" :key="reward.id">
-      <div class="mr-2 mb-2">
+    <div class="col-sm-3" v-for="reward in rewardDetails" :key="reward.id">
+      <div class="mr-2 mb-5">
         <div class="card">
           <img class="card-img-top" :src="rewardImages[reward.rewardId]" alt="Card image cap">
           <div class="card-body">
