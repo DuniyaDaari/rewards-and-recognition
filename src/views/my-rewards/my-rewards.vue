@@ -32,7 +32,7 @@ import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 
 import { LazyInject } from '../../di'
-import { REWARDS_DETAILS_SERVICE } from '../../services/api/rewardsDetails'
+import { REWARDS_DETAILS_SERVICE } from '../../services/api/reward-details/rewardsDetails'
 import { RrCommonState, RrCommonMutation } from '../../store'
 
 @Component()

@@ -1,22 +1,19 @@
-import cloneDeep from 'lodash/cloneDeep'
-import { Register } from '../../di'
-import axios from 'axios'
+import { Register } from '../../../di'
+// import axios from 'axios'
 
-// import { mockUserDetails } from './mockUserDetails'
+import { mockUserDetails } from './mockUserDetails'
 
 export const USER_DETAILS_SERVICE = Symbol('UserDetailsService')
 
 @Register(USER_DETAILS_SERVICE)
 export default class UserDetailsService {
   fetchUserDetails (emailId) {
-    return axios.get(`http://localhost:8085/user/${emailId}`).then(function ({ data }) {
-      return data
-    })
-    // return Promise.resolve(mockUserDetails)
+    // return axios.get(`http://localhost:8085/user/${emailId}`).then(({ data }) => data)
+    return Promise.resolve(mockUserDetails)
   }
 
   async getVisiblePages (details) {
-    let userDetails = details ? cloneDeep(details) : await this.fetchUserDetails()
+    let userDetails = details
     let pagesVisible = []
 
     switch (userDetails.role) {

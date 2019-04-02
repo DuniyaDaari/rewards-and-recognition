@@ -1,5 +1,5 @@
 import container from '../../di'
-import { USER_DETAILS_SERVICE } from '../../services/api/userDetails'
+import { USER_DETAILS_SERVICE } from '../../services/api/user-details/userDetails'
 
 export async function getUserDetails ({ commit, state }) {
   commit('setIsUserDetailsLoading', true)

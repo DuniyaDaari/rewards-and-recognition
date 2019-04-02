@@ -3,6 +3,8 @@
     <h1>{{teamData.name}}</h1>
     <h6>Line manager: {{teamData.lineManager.firstName}} {{teamData.lineManager.middleName}} {{teamData.lineManager.lastName}}</h6>
     <br/>
+    <div v-show="showSuccessMessage " class="success my-4">Successfully given <b>{{modalData.reward.rewardName}}</b> reward to <b>{{modalData.employee.firstName}} {{modalData.employee.middleName}} {{modalData.employee.lastName}}</b> </div>
+    <div v-show="showErrorMessage " class="error my-4">There has been an error while giving reward to <b>{{modalData.employee.firstName}} {{modalData.employee.middleName}} {{modalData.employee.lastName}}</b>. Please try again later</div>
     <table class="table table-striped table-bordered table-hover table-responsive-xl">
       <thead>
         <tr class="table-primary">
@@ -31,7 +33,7 @@
                 type="button"
                 class="btn btn-primary rewardButton"
                 data-toggle="modal"
-                @click="modalData.reward = reward; modalData.employee = employee;"
+                @click="modalData.reward = reward; modalData.employee = employee; showSuccessMessage = false; showErrorMessage = false;"
                 data-target="#rewardModal"
                 data-placement="top"
                 :title="reward.rewardName"
@@ -80,18 +82,15 @@ import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 
 import { LazyInject } from '../../di'
-import { USER_DETAILS_SERVICE } from '../../services/api/userDetails'
 import { TEAM_DATA_SERVICE } from '../../services/api/team-table-api/teamData'
 import { RrCommonState } from '../../store'
 
 @Component()
 export default class TeamDataView extends Vue {
-  @LazyInject(USER_DETAILS_SERVICE) userDetailsService;
   @LazyInject(TEAM_DATA_SERVICE) teamDataService;
   @RrCommonState userDetails;
 
   rewardDetails = [];
-  pid = '';
   teamData = [];
   teamId = '';
   showModal = false;
@@ -100,6 +99,8 @@ export default class TeamDataView extends Vue {
     reward: {},
     employee: {}
   };
+  showSuccessMessage = false
+  showErrorMessage = false
 
   async created () {
     this.teamId = this.$router.currentRoute.params.teamId
@@ -108,6 +109,16 @@ export default class TeamDataView extends Vue {
 
   async nominateReward () {
     this.message = await this.teamDataService.assignRewardToEmployee(this.modalData.employee.pid, this.modalData.reward.id, this.teamId, this.pid, this.modalData.reward.comments)
+    this.showSuccessMessage = this.message.statusCode === 201
+    this.showErrorMessage = !this.showSuccessMessage
+    if (this.showSuccessMessage) {
+      // this.teamData.employees.indexOf(modalData.employee)
+      this.modalData.employee.rewards.forEach((reward) => {
+        if (reward.id === this.modalData.reward.id) {
+          reward.eligible = false
+        }
+      })
+    }
   }
   get pid () {
     return this.userDetails.pid
