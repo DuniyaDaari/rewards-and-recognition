@@ -23,24 +23,26 @@
 <script>
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
+
 import { LazyInject } from '../../di'
-import { USER_DETAILS_SERVICE } from '../../services/api/userDetails'
 import { TEAMS_DETAILS_SERVICE } from '../../services/api/teams-api/teamsDetails'
-import { RrCommonState, RrCommonMutation } from '../../store'
+import { RrCommonState } from '../../store'
 
 @Component()
 export default class MyTeamsView extends Vue {
-  @LazyInject(USER_DETAILS_SERVICE) userDetailsService;
   @LazyInject(TEAMS_DETAILS_SERVICE) teamsDetailsService;
   @RrCommonState userDetails;
 
   rewardDetails = [];
-pid = '';
-teamsDetails = [];
-async created () {
-  this.pid = this.userDetails.pid
-  this.userDetailsService.isUserAuthorized('teams')
-  this.teamsDetails = await this.teamsDetailsService.fetchTeamsDetails(this.pid)
-}
+  pid = '';
+  teamsDetails = [];
+
+  async created () {
+    this.teamsDetails = await this.teamsDetailsService.fetchTeamsDetails(this.pid)
+  }
+
+  get pid () {
+    return this.userDetails.pid
+  }
 }
 </script>

@@ -51,6 +51,7 @@
 <script>
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
+
 import { RrCommonState } from '../../store'
 
 @Component()
@@ -59,22 +60,26 @@ export default class RrHeader extends Vue {
   @RrCommonState userEmail;
   @RrCommonState pagesVisible;
 
-  pid = '';
-  rewardsTabVisible = false;
-  teamsTabVisible = false;
-  adminTabVisible = false;
+  get rewardsTabVisible () {
+    return this.pagesVisible.includes('rewards')
+  }
 
-  created () {
-    this.pid = this.userDetails.pid
-    this.rewardsTabVisible = this.pagesVisible.includes('rewards')
-    this.teamsTabVisible = this.pagesVisible.includes('teams')
-    this.adminTabVisible = this.pagesVisible.includes('admin')
+  get teamsTabVisible () {
+    return this.pagesVisible.includes('teams')
+  }
+
+  get adminTabVisible () {
+    return this.pagesVisible.includes('admin')
   }
 
   async logout () {
     await this.$auth.logout()
     await this.$auth.getUser()
-    this.$router.push('/')
+    this.$auth.loginRedirect('/')
+  }
+
+  get pid () {
+    return this.userDetails.pid
   }
 }
 </script>

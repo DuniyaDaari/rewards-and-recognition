@@ -78,14 +78,17 @@
 <script>
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
+
 import { LazyInject } from '../../di'
 import { USER_DETAILS_SERVICE } from '../../services/api/userDetails'
 import { TEAM_DATA_SERVICE } from '../../services/api/team-table-api/teamData'
+import { RrCommonState } from '../../store'
 
 @Component()
 export default class TeamDataView extends Vue {
   @LazyInject(USER_DETAILS_SERVICE) userDetailsService;
   @LazyInject(TEAM_DATA_SERVICE) teamDataService;
+  @RrCommonState userDetails;
 
   rewardDetails = [];
   pid = '';
@@ -99,9 +102,7 @@ export default class TeamDataView extends Vue {
   };
 
   async created () {
-    this.pid = this.$router.currentRoute.params.pid
     this.teamId = this.$router.currentRoute.params.teamId
-    this.userDetailsService.isUserAuthorized('teams')
     this.teamData = await this.teamDataService.fetchTeamsDetails(
       this.teamId
     )
@@ -109,6 +110,10 @@ export default class TeamDataView extends Vue {
 
   async nominateReward () {
     this.message = await this.teamDataService.assignRewardToEmployee(this.modalData.employee.pid, this.modalData.reward.id, this.teamId, this.pid, this.modalData.reward.comments)
+  }
+
+  get pid () {
+    return this.userDetails.pid
   }
 }
 </script>

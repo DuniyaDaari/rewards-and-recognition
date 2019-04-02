@@ -1,7 +1,7 @@
 import { Register } from '../../../di'
 import axios from 'axios'
 
-import { mockRewardData } from './mockRewardData'
+// import { mockRewardData } from './mockRewardData'
 
 export const REWARD_DATA_SERVICE = Symbol('RewardDataService')
 

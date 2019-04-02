@@ -4,8 +4,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Component from 'vue-class-component'
 
-import LoginView from '../views/login'
-
 let AdminView = () => import('../views/admin')
 let HomeView = () => import('../views/home')
 let MyRewardsView = () => import('../views/my-rewards')
@@ -33,8 +31,7 @@ export function createRouter (vueInstance = Vue) {
   let routes = [
     {
       path: '/',
-      name: 'login',
-      component: LoginView
+      name: 'login'
     },
     {
       path: '/:pid',

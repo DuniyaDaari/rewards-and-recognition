@@ -1,21 +1,18 @@
 import cloneDeep from 'lodash/cloneDeep'
 import { Register } from '../../di'
-// import axios from 'axios'
+import axios from 'axios'
 
-import { mockUserDetails } from './mockUserDetails'
+// import { mockUserDetails } from './mockUserDetails'
 
 export const USER_DETAILS_SERVICE = Symbol('UserDetailsService')
 
 @Register(USER_DETAILS_SERVICE)
 export default class UserDetailsService {
   fetchUserDetails (emailId) {
-    // return axios.get('/rewards-and-recognition-rest/user-roles').then(function ({data}) {
-    //   console.log(data)
-    //   return data
-    // }).catch(function (error) {
-    //   console.log(error)
-    // })
-    return Promise.resolve(mockUserDetails)
+    return axios.get(`http://localhost:8085/user/${emailId}`).then(function ({ data }) {
+      return data
+    })
+    // return Promise.resolve(mockUserDetails)
   }
 
   async getVisiblePages (details) {
@@ -27,15 +24,15 @@ export default class UserDetailsService {
         pagesVisible = ['rewards']
         break
 
-      case 'EMPLOYEE_MANAGER':
+      case 'MANAGER':
         pagesVisible = ['rewards', 'teams']
         break
 
-      case 'EMPLOYEE_ADMIN':
+      case 'ADMIN':
         pagesVisible = ['rewards', 'admin']
         break
 
-      case 'EMPLOYEE_MANAGER_ADMIN':
+      case 'ADMIN_MANAGER':
         pagesVisible = ['rewards', 'teams', 'admin']
         break
 

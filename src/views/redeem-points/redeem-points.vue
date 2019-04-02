@@ -77,13 +77,10 @@
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 
-import { LazyInject } from '../../di'
-import { USER_DETAILS_SERVICE } from '../../services/api/userDetails'
 import { RrCommonState } from '../../store'
 
 @Component()
 export default class RedeemPoints extends Vue {
-  @LazyInject(USER_DETAILS_SERVICE) userDetailsService;
   @RrCommonState appImages;
   @RrCommonState userDetails;
   @RrCommonState totalRewardPoints;
@@ -98,8 +95,6 @@ export default class RedeemPoints extends Vue {
   showSuccessMessage = false;
 
   async created () {
-    this.pid = this.userDetails.pid
-    this.userDetailsService.isUserAuthorized('rewards')
     this.paytmImg = this.appImages.paytm
     this.amazonImg = this.appImages.amazon
     this.flipkartImg = this.appImages.flipkart
@@ -119,6 +114,10 @@ export default class RedeemPoints extends Vue {
 
   confirmRedeem () {
     this.showSuccessMessage = true
+  }
+
+  get pid () {
+    return this.userDetails.pid
   }
 }
 </script>

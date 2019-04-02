@@ -1,7 +1,7 @@
 <template>
   <div>
     <rr-header v-if="Object.keys(userDetails).length != 0" />
-    <router-view class="rr-router-view"/>
+    <router-view v-if="isLoginRoute || Object.keys(userDetails).length != 0" class="rr-router-view"/>
     <rr-footer v-if="Object.keys(userDetails).length != 0" />
   </div>
 </template>
@@ -27,6 +27,7 @@ export default class App extends Vue {
   @RrCommonState appImages
 
   @RrCommonMutation setAppImages
+  @RrCommonMutation setUserEmail
 
   images = {}
   isDataLoaded = false
@@ -34,6 +35,24 @@ export default class App extends Vue {
 
   async created () {
     this.setImages()
+
+    let isAuthenticated = await this.$auth.isAuthenticated()
+
+    if (isAuthenticated) {
+      let user = await this.$auth.getUser()
+      let email = user.email
+      this.setUserEmail(email)
+      await this.getUserDetails()
+      if (this.$router.currentRoute.name === 'login') {
+        this.$router.push({ name: 'home', params: { pid: this.userDetails.pid } })
+      }
+    } else {
+      this.$auth.loginRedirect('/')
+    }
+  }
+
+  get isLoginRoute () {
+    return !this.$route.name || this.$route.name === 'login'
   }
 
   setImages () {

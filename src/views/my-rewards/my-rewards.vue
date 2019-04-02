@@ -32,27 +32,21 @@ import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 
 import { LazyInject } from '../../di'
-import { USER_DETAILS_SERVICE } from '../../services/api/userDetails'
 import { REWARDS_DETAILS_SERVICE } from '../../services/api/rewardsDetails'
 import { RrCommonState, RrCommonMutation } from '../../store'
 
 @Component()
 export default class MyRewardsView extends Vue {
-  @LazyInject(USER_DETAILS_SERVICE) userDetailsService;
   @LazyInject(REWARDS_DETAILS_SERVICE) rewardsDetailsService;
   @RrCommonState appImages;
   @RrCommonState userDetails;
   @RrCommonMutation setTotalRewardPoints;
 
   rewardDetails = [];
-  patonback = '';
-  ycmd = '';
   totalRewardPoints = 0;
   rewardImages = [];
 
   async created () {
-    this.pid = this.userDetails.pid
-    this.userDetailsService.isUserAuthorized('rewards')
     this.rewardDetails = await this.rewardsDetailsService.fetchRewardsDetails(this.pid)
     this.rewardImages = {}
     this.rewardImages[2] = this.appImages.patonback
@@ -61,10 +55,12 @@ export default class MyRewardsView extends Vue {
     this.setTotalRewardPoints(this.totalRewardPoints)
   }
 
+  get pid () {
+    return this.userDetails.pid
+  }
+
   calculateTotalRewardPoints () {
-    console.log('RewardCalc')
     this.rewardDetails.forEach((item) => {
-      // this.rewardImages[item.rewardId]
       this.totalRewardPoints += parseInt(item.rewardPoints)
     })
   }

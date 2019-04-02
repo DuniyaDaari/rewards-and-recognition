@@ -1,9 +1,10 @@
 <template>
-  <div class="">
+  <div>
     <h1 class="display-4 welcomeHeading">Welcome to your dashboard!</h1>
     <div class="row mt-5">
 
         <rr-card
+          v-if="myRewardsImagePath"
           :image-path="myRewardsImagePath"
           card-heading="View my rewards"
           card-text="Click here to view the rewards you have received from your organization"
@@ -46,16 +47,20 @@ export default class HomeView extends Vue {
   @RrCommonState pagesVisible
   @RrCommonState userDetails
 
-  myRewardsImagePath = ''
-  myTeamsImagePath = ''
-  adminImagePath = ''
-  pid = ''
+  get pid () {
+    return this.userDetails.pid
+  }
 
-  created () {
-    this.pid = this.userDetails.pid
-    this.myRewardsImagePath = this.pagesVisible.includes('rewards') ? this.appImages.rewards : undefined
-    this.myTeamsImagePath = this.pagesVisible.includes('teams') ? this.appImages.teams : undefined
-    this.adminImagePath = this.pagesVisible.includes('admin') ? this.appImages.admin : undefined
+  get myRewardsImagePath () {
+    return this.pagesVisible.includes('rewards') ? this.appImages.rewards : undefined
+  }
+
+  get myTeamsImagePath () {
+    return this.pagesVisible.includes('teams') ? this.appImages.teams : undefined
+  }
+
+  get adminImagePath () {
+    return this.pagesVisible.includes('admin') ? this.appImages.admin : undefined
   }
 }
 </script>
