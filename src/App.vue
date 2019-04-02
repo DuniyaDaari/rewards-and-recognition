@@ -77,5 +77,6 @@ export default class App extends Vue {
 @import './styles/main.scss';
 .rr-router-view{
   padding: 20px 4%;
+  margin-bottom: 10%;
 }
 </style>

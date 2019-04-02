@@ -23,7 +23,7 @@
           @click="redeemRewardPoints">Redeem</button>
       </div>
     </form>
-    <div class="row mt-5 justify-content-start">
+    <div class="row mt-5 justify-content-center">
       <div class="col-sm-3">
         <div class="card">
           <img :src="amazonImg" class="card-img-top" alt="...">
