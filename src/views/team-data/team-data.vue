@@ -103,15 +103,12 @@ export default class TeamDataView extends Vue {
 
   async created () {
     this.teamId = this.$router.currentRoute.params.teamId
-    this.teamData = await this.teamDataService.fetchTeamsDetails(
-      this.teamId
-    )
+    this.teamData = await this.teamDataService.fetchTeamsDetails(this.teamId)
   }
 
   async nominateReward () {
     this.message = await this.teamDataService.assignRewardToEmployee(this.modalData.employee.pid, this.modalData.reward.id, this.teamId, this.pid, this.modalData.reward.comments)
   }
-
   get pid () {
     return this.userDetails.pid
   }

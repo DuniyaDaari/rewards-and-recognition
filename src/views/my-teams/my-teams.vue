@@ -34,7 +34,6 @@ export default class MyTeamsView extends Vue {
   @RrCommonState userDetails;
 
   rewardDetails = [];
-  pid = '';
   teamsDetails = [];
 
   async created () {
