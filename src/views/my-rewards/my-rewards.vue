@@ -60,9 +60,15 @@ export default class MyRewardsView extends Vue {
   }
 
   calculateTotalRewardPoints () {
-    this.rewardDetails.forEach((item) => {
-      this.totalRewardPoints += parseInt(item.rewardPoints)
-    })
+    this.totalRewardPoints = localStorage.getItem(`${this.userDetails.pid}TRP`)
+
+    if (!this.totalRewardPoints) {
+      this.totalRewardPoints = 0
+      this.rewardDetails.forEach((item) => {
+        this.totalRewardPoints += parseInt(item.rewardPoints)
+      })
+      localStorage.setItem(`${this.userDetails.pid}TRP`, JSON.stringify(this.totalRewardPoints))
+    }
   }
 }
 </script>
