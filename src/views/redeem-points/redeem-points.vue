@@ -76,14 +76,17 @@
 <script>
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
+import cloneDeep from 'lodash'
 
-import { RrCommonState } from '../../store'
+import { RrCommonState, RrCommonMutation } from '../../store'
 
 @Component()
 export default class RedeemPoints extends Vue {
   @RrCommonState appImages;
   @RrCommonState userDetails;
   @RrCommonState totalRewardPoints;
+
+  @RrCommonMutation setTotalRewardPoints
 
   paytmImg = ''
   amazonImg = ''
@@ -93,15 +96,20 @@ export default class RedeemPoints extends Vue {
   isInValidPoints = false;
   isInValidMobileNo = false;
   showSuccessMessage = false;
+  showModal = false
 
   async created () {
     this.paytmImg = this.appImages.paytm
     this.amazonImg = this.appImages.amazon
     this.flipkartImg = this.appImages.flipkart
+
+    if (this.totalRewardPoints === 0) {
+      this.setTotalRewardPoints(localStorage.getItem(`${this.userDetails.pid}TRP`))
+    }
   }
 
   isPointsAvailable () {
-    this.isInValidPoints = this.redeemPoints > this.totalRewardPoints
+    this.isInValidPoints = parseInt(this.redeemPoints) > parseInt(this.totalRewardPoints)
   }
 
   redeemRewardPoints () {
@@ -114,6 +122,10 @@ export default class RedeemPoints extends Vue {
 
   confirmRedeem () {
     this.showSuccessMessage = true
+    this.setTotalRewardPoints(parseInt(localStorage.getItem(`${this.userDetails.pid}TRP`)) - parseInt(this.redeemPoints))
+    localStorage.setItem(`${this.userDetails.pid}TRP`, JSON.stringify(cloneDeep(this.totalRewardPoints)))
+    this.redeemPoints = ''
+    this.mobileNo = ''
   }
 
   get pid () {
