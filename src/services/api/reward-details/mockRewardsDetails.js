@@ -1,5 +1,5 @@
 export let mockRewardsDetails = {
-  'employeeRewardDetailsViews': [
+  'employeeRewardDetails': [
     {
       'id': 1,
       'employee': 'P102',
