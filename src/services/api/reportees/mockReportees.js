@@ -1,72 +1,135 @@
 export let mockReportees = {
   P100: [{
-    pid: 'P1001',
-    name: 'First employee',
-    hasReportees: true
+    'firstName': 'Ganesh',
+    'lastName': 'Patil',
+    'middleName': '',
+    'dateOfJoining': '2013-05-27',
+    'status': '1',
+    'email': 'GaneshDeveloper@test.com',
+    'designation': 'Developer',
+    'hasReportees': true,
+    'pid': 'P1001',
+    'rewards': [{
+      'id': 1,
+      'rewardName': 'You Carried My Day',
+      'rewardPoints': 50,
+      'eligible': false
+    }, {
+      'id': 2,
+      'rewardName': 'Pat On The Back',
+      'rewardPoints': 100,
+      'eligible': true
+    }]
   },
   {
-    pid: 'P1002',
-    name: 'First employee',
-    hasReportees: false
+    'firstName': 'Sukesh',
+    'lastName': 'Bhide',
+    'middleName': '',
+    'dateOfJoining': '2013-05-27',
+    'status': '1',
+    'email': 'SukeshDeveloper@test.com',
+    'designation': 'Developer',
+    'hasReportees': false,
+    'pid': 'P1002',
+    'rewards': [{
+      'id': 1,
+      'rewardName': 'You Carried My Day',
+      'rewardPoints': 50,
+      'eligible': false
+    }, {
+      'id': 2,
+      'rewardName': 'Pat On The Back',
+      'rewardPoints': 100,
+      'eligible': true
+    }]
   },
   {
-    pid: 'P1003',
-    name: 'First employee',
-    hasReportees: false
-  },
-  {
-    pid: 'P1004',
-    name: 'First employee',
-    hasReportees: true
+    'firstName': 'Mahesh',
+    'lastName': 'Shinde',
+    'middleName': '',
+    'dateOfJoining': '2013-05-27',
+    'status': '1',
+    'email': 'MaheshDeveloper@test.com',
+    'designation': 'Developer',
+    'hasReportees': false,
+    'pid': 'P1003',
+    'rewards': [{
+      'id': 1,
+      'rewardName': 'You Carried My Day',
+      'rewardPoints': 50,
+      'eligible': false
+    }, {
+      'id': 2,
+      'rewardName': 'Pat On The Back',
+      'rewardPoints': 100,
+      'eligible': true
+    }]
   }],
   P1001: [{
-    pid: 'P10011',
-    name: 'First employee',
-    hasReportees: true
-  },
-  {
-    pid: 'P10012',
-    name: 'First employee',
-    hasReportees: false
-  },
-  {
-    pid: 'P10013',
-    name: 'First employee',
-    hasReportees: false
+    'firstName': 'Parmesh',
+    'lastName': 'Verma',
+    'middleName': '',
+    'dateOfJoining': '2013-05-27',
+    'status': '1',
+    'email': 'ParmeshTest@test.com',
+    'designation': 'Tester',
+    'hasReportees': true,
+    'pid': 'P10011',
+    'rewards': [{
+      'id': 1,
+      'rewardName': 'You Carried My Day',
+      'rewardPoints': 50,
+      'eligible': false
+    }, {
+      'id': 2,
+      'rewardName': 'Pat On The Back',
+      'rewardPoints': 100,
+      'eligible': true
+    }]
   }],
   P10011: [{
     pid: 'P1000111',
-    name: 'First employee',
-    hasReportees: false
-  },
-  {
-    pid: 'P1000112',
-    name: 'First employee',
-    hasReportees: false
-  },
-  {
-    pid: 'P1000113',
-    name: 'First employee',
-    hasReportees: false
+    'firstName': 'Sai',
+    'lastName': 'Sharma',
+    'middleName': '',
+    'dateOfJoining': '2013-05-27',
+    'status': '1',
+    'email': 'MithileshTest@test.com',
+    'designation': 'Tester',
+    'hasReportees': false,
+    'pid': 'P1000111',
+    'rewards': [{
+      'id': 1,
+      'rewardName': 'You Carried My Day',
+      'rewardPoints': 50,
+      'eligible': false
+    }, {
+      'id': 2,
+      'rewardName': 'Pat On The Back',
+      'rewardPoints': 100,
+      'eligible': true
+    }]
   }],
   P1004: [{
-    pid: 'P10041',
-    name: 'First employee',
-    hasReportees: false
-  },
-  {
-    pid: 'P10042',
-    name: 'First employee',
-    hasReportees: false
-  },
-  {
-    pid: 'P10043',
-    name: 'First employee',
-    hasReportees: false
-  },
-  {
-    pid: 'P10044',
-    name: 'First employee',
-    hasReportees: false
+    'firstName': 'Mithilesh',
+    'lastName': 'Sharma',
+    'middleName': '',
+    'dateOfJoining': '2013-05-27',
+    'status': '1',
+    'email': 'MithileshTest@test.com',
+    'designation': 'Tester',
+    'hasReportees': false,
+    'pid': 'P10041',
+    'rewards': [{
+      'id': 1,
+      'rewardName': 'You Carried My Day',
+      'rewardPoints': 50,
+      'eligible': false
+    }, {
+      'id': 2,
+      'rewardName': 'Pat On The Back',
+      'rewardPoints': 100,
+      'eligible': true
+    }]
   }]
 }

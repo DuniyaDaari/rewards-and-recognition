@@ -11,8 +11,8 @@
               v-if="reportee.hasReportees"
             >
             <i class="fas" :class="isPanelOpen[reportee.pid] ? 'fa-minus' : 'fa-plus'">&nbsp;&nbsp;</i>
-            {{reportee.name}}</a>
-            <span v-else><i class="fas fa-angle-right"></i>&nbsp;&nbsp;{{reportee.name}}</span>
+            {{reportee.firstName}}</a>
+            <span v-else><i class="fas fa-angle-right"></i>&nbsp;&nbsp;{{reportee.firstName}}</span>
         </div>
         <recursive-accordion :id="`collapse${reportee.pid}`"
         :class="isPanelOpen[reportee.pid] ? 'collapse show' : 'collapse'"
