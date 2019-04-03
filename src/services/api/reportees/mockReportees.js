@@ -88,7 +88,6 @@ export let mockReportees = {
     }]
   }],
   P10011: [{
-    pid: 'P1000111',
     'firstName': 'Sai',
     'lastName': 'Sharma',
     'middleName': '',
