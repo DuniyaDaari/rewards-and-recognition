@@ -5,9 +5,9 @@
         <ul class="nav nav-pills">
           <li class="nav-item">
             <router-link
-              class="nav-link active navColor"
+              class=""
               :to="{ name: 'home', params: {pid}}"
-            >Rewards & Recognition</router-link>
+            ><img :src="rnrImg" class="logo"/></router-link>
           </li>
           <li class="nav-item" v-if="rewardsTabVisible">
             <router-link
@@ -17,6 +17,9 @@
           </li>
           <li class="nav-item" v-if="teamsTabVisible">
             <router-link class="nav-link navColor" :to="{ name: 'teams', params: {pid}}">My Teams</router-link>
+          </li>
+          <li class="nav-item" v-if="teamsTabVisible">
+            <router-link class="nav-link navColor" :to="{ name: 'reportees', params: {pid}}">My Reportees</router-link>
           </li>
           <li class="nav-item" v-if="adminTabVisible">
             <router-link class="nav-link navColor" :to="{ name: 'admin', params: {pid}}">Admin</router-link>
@@ -51,6 +54,7 @@
 <script>
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
+
 import { RrCommonState } from '../../store'
 
 @Component()
@@ -58,23 +62,34 @@ export default class RrHeader extends Vue {
   @RrCommonState userDetails;
   @RrCommonState userEmail;
   @RrCommonState pagesVisible;
+  @RrCommonState appImages;
 
-  pid = '';
-  rewardsTabVisible = false;
-  teamsTabVisible = false;
-  adminTabVisible = false;
+  rnrImg = '';
 
-  created () {
-    this.pid = this.userDetails.pid
-    this.rewardsTabVisible = this.pagesVisible.includes('rewards')
-    this.teamsTabVisible = this.pagesVisible.includes('teams')
-    this.adminTabVisible = this.pagesVisible.includes('admin')
+  get rewardsTabVisible () {
+    return this.pagesVisible.includes('rewards')
+  }
+
+  get teamsTabVisible () {
+    return this.pagesVisible.includes('teams')
+  }
+
+  get adminTabVisible () {
+    return this.pagesVisible.includes('admin')
   }
 
   async logout () {
     await this.$auth.logout()
     await this.$auth.getUser()
-    this.$router.push('/')
+    this.$auth.loginRedirect('/')
+  }
+
+  get pid () {
+    return this.userDetails.pid
+  }
+
+  created () {
+    this.rnrImg = this.appImages.rnr
   }
 }
 </script>
@@ -108,5 +123,8 @@ export default class RrHeader extends Vue {
 }
 .profileDropDown {
   left: -85px;
+}
+.logo{
+  height:50px;
 }
 </style>

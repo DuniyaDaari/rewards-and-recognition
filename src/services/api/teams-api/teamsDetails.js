@@ -8,8 +8,7 @@ export const TEAMS_DETAILS_SERVICE = Symbol('TeamDetailsService')
 @Register(TEAMS_DETAILS_SERVICE)
 export default class TeamsDetailsService {
   fetchTeamsDetails (pid) {
-    // return axios.get('/rewards-and-recognition-rest/teams-details').then(({ data }) => data)
-    console.log(pid)
+    // return axios.get(`http://localhost:8085/teams/${pid}`).then(({ data }) => data)
     return Promise.resolve(mockTeamsDetails)
   }
 }

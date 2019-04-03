@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="display-4">My Rewards</h1>
     <div class="row my-3 d-flex justify-content-end">
       <div class="col-sm-2"><span class="align-middle">Total Reward Points : </span> <span class="font-weight-bold align-middle">{{totalRewardPoints}}</span></div>
       <div class="col-sm-2">
@@ -7,8 +8,8 @@
       </div>
     </div>
     <div class="row">
-    <div class="col-sm-4" v-for="reward in rewardDetails" :key="reward.id">
-      <div class="mr-2 mb-2">
+    <div class="col-sm-3" v-for="reward in rewardDetails" :key="reward.id">
+      <div class="mr-2 mb-5">
         <div class="card">
           <img class="card-img-top" :src="rewardImages[reward.rewardId]" alt="Card image cap">
           <div class="card-body">
@@ -32,28 +33,23 @@ import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
 
 import { LazyInject } from '../../di'
-import { USER_DETAILS_SERVICE } from '../../services/api/userDetails'
-import { REWARDS_DETAILS_SERVICE } from '../../services/api/rewardsDetails'
+import { REWARDS_DETAILS_SERVICE } from '../../services/api/reward-details/rewardsDetails'
 import { RrCommonState, RrCommonMutation } from '../../store'
 
 @Component()
 export default class MyRewardsView extends Vue {
-  @LazyInject(USER_DETAILS_SERVICE) userDetailsService;
   @LazyInject(REWARDS_DETAILS_SERVICE) rewardsDetailsService;
   @RrCommonState appImages;
   @RrCommonState userDetails;
   @RrCommonMutation setTotalRewardPoints;
 
   rewardDetails = [];
-  patonback = '';
-  ycmd = '';
   totalRewardPoints = 0;
   rewardImages = [];
 
   async created () {
-    this.pid = this.userDetails.pid
-    this.userDetailsService.isUserAuthorized('rewards')
-    this.rewardDetails = await this.rewardsDetailsService.fetchRewardsDetails()
+    this.rewardDetails = await this.rewardsDetailsService.fetchRewardsDetails(this.pid)
+    this.rewardDetails = this.rewardDetails.employeeRewardDetailsViews
     this.rewardImages = {}
     this.rewardImages[2] = this.appImages.patonback
     this.rewardImages[1] = this.appImages.ycmd
@@ -61,12 +57,20 @@ export default class MyRewardsView extends Vue {
     this.setTotalRewardPoints(this.totalRewardPoints)
   }
 
+  get pid () {
+    return this.userDetails.pid
+  }
+
   calculateTotalRewardPoints () {
-    console.log('RewardCalc')
-    this.rewardDetails.forEach((item) => {
-      // this.rewardImages[item.rewardId]
-      this.totalRewardPoints += parseInt(item.rewardPoints)
-    })
+    this.totalRewardPoints = localStorage.getItem(`${this.userDetails.pid}TRP`)
+
+    if (!this.totalRewardPoints) {
+      this.totalRewardPoints = 0
+      this.rewardDetails.forEach((item) => {
+        this.totalRewardPoints += parseInt(item.rewardPoints)
+      })
+      localStorage.setItem(`${this.userDetails.pid}TRP`, JSON.stringify(this.totalRewardPoints))
+    }
   }
 }
 </script>

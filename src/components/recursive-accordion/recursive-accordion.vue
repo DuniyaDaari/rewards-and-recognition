@@ -1,39 +1,36 @@
 <template>
-  <div class="mb-5">
-      <div v-if="Object.keys(teamData).length > 0">
-    <h3>{{teamData.name}}</h3>
-    <h6 class="mb-3">Line manager: {{teamData.lineManager.firstName}} {{teamData.lineManager.middleName}} {{teamData.lineManager.lastName}}</h6>
-    <div v-show="showSuccessMessage " class="success my-4">Successfully given <b>{{modalData.reward.rewardName}}</b> reward to <b>{{modalData.employee.firstName}} {{modalData.employee.middleName}} {{modalData.employee.lastName}}</b> </div>
-    <div v-show="showErrorMessage " class="error my-4">There has been an error while giving reward to <b>{{modalData.employee.firstName}} {{modalData.employee.middleName}} {{modalData.employee.lastName}}</b>. Please try again later</div>
-    <table class="table table-striped table-bordered table-hover table-responsive-xl">
-      <thead>
-        <tr class="table-primary">
-          <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Email id</th>
-          <th scope="col">Designation</th>
-          <th scope="col">Date of Joining</th>
-          <th scope="col">Eligible Rewards</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="employee in teamData.employees" :key="employee.id">
-          <th scope="row">{{employee.pid}}</th>
-          <td>{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</td>
-          <td>{{employee.email}}</td>
-          <td>{{employee.designation}}</td>
-          <td>{{employee.dateOfJoining}}</td>
-          <td>
-            <span
-              v-for="reward in employee.rewards"
+  <div v-if="renderComponent">
+    <div v-show="showSuccessMessage " class="success my-4">Successfully given reward. </div>
+    <div v-show="showErrorMessage " class="error my-4">There has been an error while giving reward. Please try again later</div>
+    <ul class="accordion">
+      <li class="card" v-for="reportee in reportees" :key="reportee.pid">
+        <div class="card-header">
+          <a
+            href="#"
+            @click.prevent="togglePanel(reportee.pid) && !reportee.reporteesList && getReportees(reportee)"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+            v-if="reportee.hasReportees"
+          >
+            <i class="fas" :class="isPanelOpen[reportee.pid] ? 'fa-minus' : 'fa-plus'">&nbsp;&nbsp;</i>
+            {{reportee.firstName}} {{reportee.middleName}} {{reportee.lastName}}
+          </a>
+          <span v-else>
+            <i class="fas fa-angle-right"></i>
+            &nbsp;&nbsp;{{reportee.firstName}} {{reportee.middleName}} {{reportee.lastName}}
+          </span>
+          <!--  Reward buttons start -->
+          <span
+              v-for="reward in reportee.rewards"
               :key="reward.id"
               data-toggle="tooltip"
+              class="float-right"
             >
               <button
                 type="button"
-                class="btn btn-primary rewardButton"
+                class="btn btn-primary reporteesRewardButton"
                 data-toggle="modal"
-                @click="modalData.reward = reward; modalData.employee = employee; showSuccessMessage = false; showErrorMessage = false;"
+                @click="modalData.reward = reward; modalData.employee = reportee; showSuccessMessage = false; showErrorMessage = false;"
                 data-target="#rewardModal"
                 data-placement="top"
                 :title="reward.rewardName"
@@ -70,32 +67,45 @@
                 </div>
               </div>
             </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            <!-- Reward buttons end -->
+            <span class="float-right pr-4">
+              <b>{{reportee.designation}}</b>
+            </span>
+        </div>
+        <recursive-accordion
+          :id="`collapse${reportee.pid}`"
+          :class="isPanelOpen[reportee.pid] ? 'collapse show' : 'collapse'"
+          v-if="reportee.reporteesList"
+          :data="reportee.reporteesList"
+        />
+      </li>
+    </ul>
   </div>
-</div>
 </template>
-
 <script>
 import Vue from 'vue'
-import { Component } from 'vue-property-decorator'
+import { Component, Prop } from 'vue-property-decorator'
 
 import { LazyInject } from '../../di'
+import { REPORTEES_SERVICE } from '../../services/api/reportees/reportees'
 import { TEAM_DATA_SERVICE } from '../../services/api/team-table-api/teamData'
 import { RrCommonState } from '../../store'
 
-@Component()
-export default class TeamDataView extends Vue {
+import RecursiveAccordionComponent from './index'
+
+@Component({
+  components: {
+    RecursiveAccordionComponent
+  }
+})
+export default class RecursiveAccordion extends Vue {
+  @Prop({ type: Array }) data
+  @LazyInject(REPORTEES_SERVICE) reporteesService
   @LazyInject(TEAM_DATA_SERVICE) teamDataService;
   @RrCommonState userDetails;
 
-  rewardDetails = [];
-  teamData = [];
-  teamId = '';
-  showModal = false;
-  message ='';
+  renderComponent = false
+  isPanelOpen = []
   modalData = {
     reward: {},
     employee: {}
@@ -103,9 +113,31 @@ export default class TeamDataView extends Vue {
   showSuccessMessage = false
   showErrorMessage = false
 
-  async created () {
-    this.teamId = this.$router.currentRoute.params.teamId
-    this.teamData = await this.teamDataService.fetchTeamsDetails(this.teamId)
+  created () {
+    this.renderComponent = true
+  }
+
+  async reRenderComponent () {
+    this.showSuccessMessage = false
+    this.showErrorMessage = false
+    this.renderComponent = false
+    await Vue.nextTick()
+    this.renderComponent = true
+  }
+
+  async togglePanel (pid) {
+    this.isPanelOpen[pid] = !this.isPanelOpen[pid]
+    await this.reRenderComponent()
+    return true
+  }
+
+  async getReportees (reportee) {
+    reportee.reporteesList = await this.reporteesService.fetchReportees(reportee.pid)
+    await this.reRenderComponent()
+  }
+
+  get reportees () {
+    return this.data
   }
 
   async nominateReward () {
@@ -113,7 +145,6 @@ export default class TeamDataView extends Vue {
     this.showSuccessMessage = this.message.statusCode === 201
     this.showErrorMessage = !this.showSuccessMessage
     if (this.showSuccessMessage) {
-      // this.teamData.employees.indexOf(modalData.employee)
       this.modalData.employee.rewards.forEach((reward) => {
         if (reward.id === this.modalData.reward.id) {
           reward.eligible = false
@@ -121,6 +152,7 @@ export default class TeamDataView extends Vue {
       })
     }
   }
+
   get pid () {
     return this.userDetails.pid
   }

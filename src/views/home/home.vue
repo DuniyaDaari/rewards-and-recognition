@@ -1,12 +1,13 @@
 <template>
-  <div class="">
-    <h1 class="display-4 welcomeHeading">Welcome to your dashboard!</h1>
+  <div>
+    <h1 class="display-4">Welcome to your dashboard!</h1>
     <div class="row mt-5">
 
         <rr-card
+          v-if="myRewardsImagePath"
           :image-path="myRewardsImagePath"
           card-heading="View my rewards"
-          card-text="Click here to view the rewards you have received from your organization"
+          card-text="Click here to view the rewards you have received"
           :button-route="{ name:'rewards', params: { pid } }"
           >
         </rr-card>
@@ -19,10 +20,18 @@
           >
         </rr-card>
         <rr-card
+          v-if="myTeamsImagePath"
+          :image-path="reporteesImagePath"
+          card-heading="Reportees"
+          card-text="Click here to view all of your reportees"
+          :button-route="{ name:'reportees', params: { pid } }"
+          >
+        </rr-card>
+         <rr-card
           v-if="adminImagePath"
           :image-path="adminImagePath"
           card-heading="Configure"
-          card-text="Click here to configure the awards of your organization and add teams/employees"
+          card-text="Click here to configure the awards and add teams/employees"
           :button-route="{ name:'admin', params: { pid } }"
           >
         </rr-card>
@@ -46,16 +55,24 @@ export default class HomeView extends Vue {
   @RrCommonState pagesVisible
   @RrCommonState userDetails
 
-  myRewardsImagePath = ''
-  myTeamsImagePath = ''
-  adminImagePath = ''
-  pid = ''
+  get pid () {
+    return this.userDetails.pid
+  }
 
-  created () {
-    this.pid = this.userDetails.pid
-    this.myRewardsImagePath = this.pagesVisible.includes('rewards') ? this.appImages.rewards : undefined
-    this.myTeamsImagePath = this.pagesVisible.includes('teams') ? this.appImages.teams : undefined
-    this.adminImagePath = this.pagesVisible.includes('admin') ? this.appImages.admin : undefined
+  get myRewardsImagePath () {
+    return this.pagesVisible.includes('rewards') ? this.appImages.rewards : undefined
+  }
+
+  get myTeamsImagePath () {
+    return this.pagesVisible.includes('teams') ? this.appImages.teams : undefined
+  }
+
+  get reporteesImagePath () {
+    return this.pagesVisible.includes('teams') ? this.appImages.reportees : undefined
+  }
+
+  get adminImagePath () {
+    return this.pagesVisible.includes('admin') ? this.appImages.admin : undefined
   }
 }
 </script>

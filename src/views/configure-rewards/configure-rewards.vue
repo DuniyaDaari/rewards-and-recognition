@@ -11,7 +11,7 @@
           <th scope="col">Reward</th>
           <th scope="col">Description</th>
           <th scope="col">Actual Value</th>
-          <th scope="col">Edit Value</th>
+          <th scope="col">Modified Value</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -32,26 +32,17 @@
 <script>
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
+
 import { LazyInject } from '../../di'
-import { USER_DETAILS_SERVICE } from '../../services/api/userDetails'
 import { REWARD_DATA_SERVICE } from '../../services/api/configure-reward-api/rewardData'
-// import { RrCommonState } from '../../store'
 
 @Component()
 export default class TeamDataView extends Vue {
-  @LazyInject(USER_DETAILS_SERVICE) userDetailsService;
   @LazyInject(REWARD_DATA_SERVICE) rewardDataService;
 
   rewardsData = [];
   async created () {
-    this.userDetailsService.isUserAuthorized('reward')
     this.rewardsData = await this.rewardDataService.fetchRewards()
   }
 }
 </script>
-
-<style>
-.tableInputField{
-    width: 20%
-}
-</style>
