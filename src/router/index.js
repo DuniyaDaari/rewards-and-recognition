@@ -59,7 +59,7 @@ export function createRouter (vueInstance = Vue) {
       component: ConfigureRewards,
       meta: {
         requiresAuth: true,
-        pageCategory: 'rewards',
+        pageCategory: 'admin',
         title: 'Home'
       }
     },
@@ -89,7 +89,7 @@ export function createRouter (vueInstance = Vue) {
       component: ReporteesView,
       meta: {
         requiresAuth: true,
-        pageCategory: 'teams',
+        pageCategory: 'reportees',
         title: 'Home'
       }
     },
