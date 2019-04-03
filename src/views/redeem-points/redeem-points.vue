@@ -78,7 +78,6 @@
 <script>
 import Vue from 'vue'
 import { Component } from 'vue-property-decorator'
-import cloneDeep from 'lodash'
 
 import { RrCommonState, RrCommonMutation } from '../../store'
 
@@ -125,8 +124,9 @@ export default class RedeemPoints extends Vue {
 
   confirmRedeem () {
     this.showSuccessMessage = true
-    this.setTotalRewardPoints(parseInt(localStorage.getItem(`${this.userDetails.pid}TRP`)) - parseInt(this.redeemPoints))
-    localStorage.setItem(`${this.userDetails.pid}TRP`, JSON.stringify(cloneDeep(this.totalRewardPoints)))
+    this.setTotalRewardPoints(parseInt(this.totalRewardPoints) - parseInt(this.redeemPoints))
+    let alreadyRedeemedPoints = localStorage.getItem(`${this.userDetails.pid}RDP`) != null ? localStorage.getItem(`${this.userDetails.pid}RDP`) : '0'
+    localStorage.setItem(`${this.userDetails.pid}RDP`, JSON.stringify(parseInt(alreadyRedeemedPoints) + parseInt(this.redeemPoints)))
     this.redeemPoints = ''
     this.mobileNo = ''
   }
