@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Admin</h1>
+    <h1 class="display-4">Admin</h1>
     <br/>
     <div class="row">
       <div class="col-sm-4">

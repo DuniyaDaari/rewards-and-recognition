@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="display-4">My Rewards</h1>
     <div class="row my-3 d-flex justify-content-end">
       <div class="col-sm-2"><span class="align-middle">Total Reward Points : </span> <span class="font-weight-bold align-middle">{{totalRewardPoints}}</span></div>
       <div class="col-sm-2">

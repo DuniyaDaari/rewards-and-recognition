@@ -20,6 +20,14 @@
           >
         </rr-card>
         <rr-card
+          v-if="myTeamsImagePath"
+          :image-path="reporteesImagePath"
+          card-heading="Reportees"
+          card-text="Click here to view all of your reportees"
+          :button-route="{ name:'reportees', params: { pid } }"
+          >
+        </rr-card>
+         <rr-card
           v-if="adminImagePath"
           :image-path="adminImagePath"
           card-heading="Configure"
@@ -57,6 +65,10 @@ export default class HomeView extends Vue {
 
   get myTeamsImagePath () {
     return this.pagesVisible.includes('teams') ? this.appImages.teams : undefined
+  }
+
+  get reporteesImagePath () {
+    return this.pagesVisible.includes('teams') ? this.appImages.reportees : undefined
   }
 
   get adminImagePath () {

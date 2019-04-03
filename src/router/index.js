@@ -11,6 +11,7 @@ let MyTeamsView = () => import('../views/my-teams')
 let TeamDataView = () => import('../views/team-data')
 let RedeemPoints = () => import('../views/redeem-points')
 let ConfigureRewards = () => import('../views/configure-rewards')
+let ReporteesView = () => import('../views/reportees')
 
 export function createRouter (vueInstance = Vue) {
   Component.registerHooks([
@@ -76,6 +77,16 @@ export function createRouter (vueInstance = Vue) {
       path: '/:pid/my-teams',
       name: 'teams',
       component: MyTeamsView,
+      meta: {
+        requiresAuth: true,
+        pageCategory: 'teams',
+        title: 'Home'
+      }
+    },
+    {
+      path: '/:pid/my-reportees',
+      name: 'reportees',
+      component: ReporteesView,
       meta: {
         requiresAuth: true,
         pageCategory: 'teams',

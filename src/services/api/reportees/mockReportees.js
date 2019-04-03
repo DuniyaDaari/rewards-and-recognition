@@ -1,72 +1,134 @@
 export let mockReportees = {
   P100: [{
-    employeeId: 'P1001',
-    employeeName: 'First employee',
-    hasReportees: true
+    'firstName': 'Ganesh',
+    'lastName': 'Patil',
+    'middleName': '',
+    'dateOfJoining': '2013-05-27',
+    'status': '1',
+    'email': 'GaneshDeveloper@test.com',
+    'designation': 'Developer',
+    'hasReportees': true,
+    'pid': 'P1001',
+    'rewards': [{
+      'id': 1,
+      'rewardName': 'You Carried My Day',
+      'rewardPoints': 50,
+      'eligible': false
+    }, {
+      'id': 2,
+      'rewardName': 'Pat On The Back',
+      'rewardPoints': 100,
+      'eligible': true
+    }]
   },
   {
-    employeeId: 'P1002',
-    employeeName: 'First employee',
-    hasReportees: false
+    'firstName': 'Sukesh',
+    'lastName': 'Bhide',
+    'middleName': '',
+    'dateOfJoining': '2013-05-27',
+    'status': '1',
+    'email': 'SukeshDeveloper@test.com',
+    'designation': 'Developer',
+    'hasReportees': false,
+    'pid': 'P1002',
+    'rewards': [{
+      'id': 1,
+      'rewardName': 'You Carried My Day',
+      'rewardPoints': 50,
+      'eligible': false
+    }, {
+      'id': 2,
+      'rewardName': 'Pat On The Back',
+      'rewardPoints': 100,
+      'eligible': true
+    }]
   },
   {
-    employeeId: 'P1003',
-    employeeName: 'First employee',
-    hasReportees: false
-  },
-  {
-    employeeId: 'P1004',
-    employeeName: 'First employee',
-    hasReportees: true
+    'firstName': 'Mahesh',
+    'lastName': 'Shinde',
+    'middleName': '',
+    'dateOfJoining': '2013-05-27',
+    'status': '1',
+    'email': 'MaheshDeveloper@test.com',
+    'designation': 'Developer',
+    'hasReportees': false,
+    'pid': 'P1003',
+    'rewards': [{
+      'id': 1,
+      'rewardName': 'You Carried My Day',
+      'rewardPoints': 50,
+      'eligible': false
+    }, {
+      'id': 2,
+      'rewardName': 'Pat On The Back',
+      'rewardPoints': 100,
+      'eligible': true
+    }]
   }],
   P1001: [{
-    employeeId: 'P10011',
-    employeeName: 'First employee',
-    hasReportees: true
-  },
-  {
-    employeeId: 'P10012',
-    employeeName: 'First employee',
-    hasReportees: false
-  },
-  {
-    employeeId: 'P10013',
-    employeeName: 'First employee',
-    hasReportees: false
+    'firstName': 'Parmesh',
+    'lastName': 'Verma',
+    'middleName': '',
+    'dateOfJoining': '2013-05-27',
+    'status': '1',
+    'email': 'ParmeshTest@test.com',
+    'designation': 'Tester',
+    'hasReportees': true,
+    'pid': 'P10011',
+    'rewards': [{
+      'id': 1,
+      'rewardName': 'You Carried My Day',
+      'rewardPoints': 50,
+      'eligible': false
+    }, {
+      'id': 2,
+      'rewardName': 'Pat On The Back',
+      'rewardPoints': 100,
+      'eligible': true
+    }]
   }],
   P10011: [{
-    employeeId: 'P1000111',
-    employeeName: 'First employee',
-    hasReportees: false
-  },
-  {
-    employeeId: 'P1000111',
-    employeeName: 'First employee',
-    hasReportees: false
-  },
-  {
-    employeeId: 'P1000111',
-    employeeName: 'First employee',
-    hasReportees: false
+    'firstName': 'Sai',
+    'lastName': 'Sharma',
+    'middleName': '',
+    'dateOfJoining': '2013-05-27',
+    'status': '1',
+    'email': 'MithileshTest@test.com',
+    'designation': 'Tester',
+    'hasReportees': false,
+    'pid': 'P1000111',
+    'rewards': [{
+      'id': 1,
+      'rewardName': 'You Carried My Day',
+      'rewardPoints': 50,
+      'eligible': false
+    }, {
+      'id': 2,
+      'rewardName': 'Pat On The Back',
+      'rewardPoints': 100,
+      'eligible': true
+    }]
   }],
   P1004: [{
-    employeeId: 'P10041',
-    employeeName: 'First employee',
-    hasReportees: false
-  },
-  {
-    employeeId: 'P10042',
-    employeeName: 'First employee',
-    hasReportees: false
-  },
-  {
-    employeeId: 'P10043',
-    employeeName: 'First employee',
-    hasReportees: false
-  },
-  {
-    employeeId: 'P10044',
-    employeeName: 'First employee',
-    hasReportees: false
+    'firstName': 'Mithilesh',
+    'lastName': 'Sharma',
+    'middleName': '',
+    'dateOfJoining': '2013-05-27',
+    'status': '1',
+    'email': 'MithileshTest@test.com',
+    'designation': 'Tester',
+    'hasReportees': false,
+    'pid': 'P10041',
+    'rewards': [{
+      'id': 1,
+      'rewardName': 'You Carried My Day',
+      'rewardPoints': 50,
+      'eligible': false
+    }, {
+      'id': 2,
+      'rewardName': 'Pat On The Back',
+      'rewardPoints': 100,
+      'eligible': true
+    }]
   }]
 }
