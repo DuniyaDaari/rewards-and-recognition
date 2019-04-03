@@ -4,7 +4,7 @@
     <br/>
     <div class="row">
       <div class="col-sm-4">
-        <div class="card">
+        <div class="card cardHeight">
           <div class="card-body">
             <h5 class="card-title">Configure Rewards</h5>
             <p
@@ -17,7 +17,7 @@
       </div>
 
       <div class="col-sm-4">
-        <div class="card">
+        <div class="card cardHeight">
           <div class="card-body">
             <h5 class="card-title">Add Team</h5>
             <p
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="col-sm-4">
-        <div class="card">
+        <div class="card cardHeight">
           <div class="card-body">
             <h5 class="card-title">Add Employee</h5>
             <p
