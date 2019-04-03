@@ -48,6 +48,7 @@ export default class MyRewardsView extends Vue {
 
   async created () {
     this.rewardDetails = await this.rewardsDetailsService.fetchRewardsDetails(this.pid)
+    this.rewardDetails = this.rewardDetails.employeeRewardDetailsViews
     this.rewardImages = {}
     this.rewardImages[2] = this.appImages.patonback
     this.rewardImages[1] = this.appImages.ycmd
@@ -60,15 +61,14 @@ export default class MyRewardsView extends Vue {
   }
 
   calculateTotalRewardPoints () {
-    this.totalRewardPoints = localStorage.getItem(`${this.userDetails.pid}TRP`)
+    let redeemedPointsInLS = localStorage.getItem(`${this.userDetails.pid}RDP`)
+    let redeemedPoints = (redeemedPointsInLS && redeemedPointsInLS !== null) ? parseInt(redeemedPointsInLS) : 0
 
-    if (!this.totalRewardPoints) {
-      this.totalRewardPoints = 0
-      this.rewardDetails.forEach((item) => {
-        this.totalRewardPoints += parseInt(item.rewardPoints)
-      })
-      localStorage.setItem(`${this.userDetails.pid}TRP`, JSON.stringify(this.totalRewardPoints))
-    }
+    this.totalRewardPoints = 0
+    this.rewardDetails.forEach((item) => {
+      this.totalRewardPoints += parseInt(item.rewardPoints)
+    })
+    this.totalRewardPoints -= redeemedPoints
   }
 }
 </script>
