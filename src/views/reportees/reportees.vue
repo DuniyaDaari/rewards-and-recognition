@@ -1,6 +1,6 @@
 <template>
   <div v-if="reportees.length > 0">
-    <h1 class="display-4">My Reportees</h1>
+    <h1 class="display-4 mb-4">My Reportees</h1>
     <recursive-accordion-component :data="reportees"></recursive-accordion-component>
   </div>
 </template>
