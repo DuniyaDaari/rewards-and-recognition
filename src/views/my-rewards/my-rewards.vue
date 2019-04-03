@@ -77,7 +77,7 @@ export default class MyRewardsView extends Vue {
 
   calculateTotalRewardPoints () {
     let redeemedPointsInLS = localStorage.getItem(`${this.userDetails.pid}RDP`)
-    let redeemedPoints = redeemedPointsInLS && redeemedPointsInLS !== null ? parseInt(redeemedPointsInLS) : 0
+    let redeemedPoints = (redeemedPointsInLS && redeemedPointsInLS !== null) ? parseInt(redeemedPointsInLS) : 0
 
     this.totalRewardPoints = 0
     this.rewardDetails.forEach((item) => {
