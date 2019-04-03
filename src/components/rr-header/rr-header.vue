@@ -18,6 +18,9 @@
           <li class="nav-item" v-if="teamsTabVisible">
             <router-link class="nav-link navColor" :to="{ name: 'teams', params: {pid}}">My Teams</router-link>
           </li>
+          <li class="nav-item" v-if="teamsTabVisible">
+            <router-link class="nav-link navColor" :to="{ name: 'reportees', params: {pid}}">My Reportees</router-link>
+          </li>
           <li class="nav-item" v-if="adminTabVisible">
             <router-link class="nav-link navColor" :to="{ name: 'admin', params: {pid}}">Admin</router-link>
           </li>
