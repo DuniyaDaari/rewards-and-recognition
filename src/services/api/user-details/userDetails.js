@@ -1,15 +1,15 @@
 import { Register } from '../../../di'
-// import axios from 'axios'
+import axios from 'axios'
 
-import { mockUserDetails } from './mockUserDetails'
+// import { mockUserDetails } from './mockUserDetails'
 
 export const USER_DETAILS_SERVICE = Symbol('UserDetailsService')
 
 @Register(USER_DETAILS_SERVICE)
 export default class UserDetailsService {
   fetchUserDetails (emailId) {
-    // return axios.get(`http://localhost:8085/user/${emailId}`).then(({ data }) => data)
-    return Promise.resolve(mockUserDetails)
+    return axios.get(`http://localhost:8085/user/${emailId}`).then(({ data }) => data)
+    // return Promise.resolve(mockUserDetails)
   }
 
   async getVisiblePages (details) {
