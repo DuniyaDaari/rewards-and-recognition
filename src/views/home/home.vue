@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1 class="display-4 welcomeHeading">Welcome to your dashboard!</h1>
+    <h1 class="display-4">Welcome to your dashboard!</h1>
     <div class="row mt-5">
 
         <rr-card
           v-if="myRewardsImagePath"
           :image-path="myRewardsImagePath"
           card-heading="View my rewards"
-          card-text="Click here to view the rewards you have received from your organization"
+          card-text="Click here to view the rewards you have received"
           :button-route="{ name:'rewards', params: { pid } }"
           >
         </rr-card>
@@ -23,7 +23,7 @@
           v-if="adminImagePath"
           :image-path="adminImagePath"
           card-heading="Configure"
-          card-text="Click here to configure the awards of your organization and add teams/employees"
+          card-text="Click here to configure the awards and add teams/employees"
           :button-route="{ name:'admin', params: { pid } }"
           >
         </rr-card>

@@ -1,5 +1,5 @@
 <template>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <div class="mr-2 mb-2">
         <div class="card">
           <img class="card-img-top" :src="imagePath" alt="Card image cap">

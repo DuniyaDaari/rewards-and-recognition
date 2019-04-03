@@ -1,8 +1,8 @@
 <template>
-  <div v-if="Object.keys(teamData).length > 0">
-    <h1>{{teamData.name}}</h1>
-    <h6>Line manager: {{teamData.lineManager.firstName}} {{teamData.lineManager.middleName}} {{teamData.lineManager.lastName}}</h6>
-    <br/>
+  <div class="mb-5">
+      <div v-if="Object.keys(teamData).length > 0">
+    <h3>{{teamData.name}}</h3>
+    <h6 class="mb-3">Line manager: {{teamData.lineManager.firstName}} {{teamData.lineManager.middleName}} {{teamData.lineManager.lastName}}</h6>
     <div v-show="showSuccessMessage " class="success my-4">Successfully given <b>{{modalData.reward.rewardName}}</b> reward to <b>{{modalData.employee.firstName}} {{modalData.employee.middleName}} {{modalData.employee.lastName}}</b> </div>
     <div v-show="showErrorMessage " class="error my-4">There has been an error while giving reward to <b>{{modalData.employee.firstName}} {{modalData.employee.middleName}} {{modalData.employee.lastName}}</b>. Please try again later</div>
     <table class="table table-striped table-bordered table-hover table-responsive-xl">
@@ -75,6 +75,7 @@
       </tbody>
     </table>
   </div>
+</div>
 </template>
 
 <script>

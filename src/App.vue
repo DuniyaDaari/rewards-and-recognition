@@ -65,6 +65,8 @@ export default class App extends Vue {
       this.images.paytm = require('./assets/paytm.jpg')
       this.images.amazon = require('./assets/amazon.jpg')
       this.images.flipkart = require('./assets/flipkart.jpg')
+      this.images.fitbit = require('./assets/fitbit.png')
+      this.images.rnr = require('./assets/rnr.jpg')
       this.setAppImages(this.images)
     }
   }
@@ -75,5 +77,6 @@ export default class App extends Vue {
 @import './styles/main.scss';
 .rr-router-view{
   padding: 20px 4%;
+  margin-bottom: 10%;
 }
 </style>
