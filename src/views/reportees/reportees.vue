@@ -1,23 +1,8 @@
 <template>
-  <!-- <div class="accordion" id="accordionExample">
-    <div class="card" v-for="reportee in reportees" :key="reportee.pid">
-      <div class="card-header" :id="`headingOne${reportee.pid}`">
-        <h2 class="mb-0">
-          <button
-            class="btn btn-link"
-            type="button"
-            data-toggle="collapse"
-            :data-target="`#collapse${reportee.pid}`"
-            aria-expanded="true"
-            aria-controls="collapseOne"
-          >{{reportee.pid}}----{{reportee.name}}</button>
-        </h2>
-      </div>
-      <recursive-accordian />
-    </div>
-  </div> -->
   <div v-if="reportees.length > 0">
-      <recursive-accordion-component :data="reportees"></recursive-accordion-component>
+    <h1>My Reportees</h1>
+    <br/>
+    <recursive-accordion-component :data="reportees"></recursive-accordion-component>
   </div>
 </template>
 <script>

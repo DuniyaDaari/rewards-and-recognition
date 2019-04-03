@@ -5,17 +5,17 @@
         <div class="card-header" :id="`headingOne${reportee.pid}`">
             <a
               href="#"
-              data-toggle="collapse"
-              @click.prevent="!reportee.reporteesList && getReportees(reportee)"
-              :data-target="`#collapse${reportee.pid}`"
+              @click.prevent="togglePanel(reportee.pid) && !reportee.reporteesList && getReportees(reportee)"
               aria-expanded="true"
               aria-controls="collapseOne"
               v-if="reportee.hasReportees"
-            >{{reportee.pid}}----{{reportee.name}}</a>
-            <span v-else>{{reportee.pid}}----{{reportee.name}}</span>
+            >
+            <i class="fas" :class="isPanelOpen[reportee.pid] ? 'fa-minus' : 'fa-plus'">&nbsp;&nbsp;</i>
+            {{reportee.name}}</a>
+            <span v-else><i class="fas fa-angle-right"></i>&nbsp;&nbsp;{{reportee.name}}</span>
         </div>
         <recursive-accordion :id="`collapse${reportee.pid}`"
-        class="collapse"
+        :class="isPanelOpen[reportee.pid] ? 'collapse show' : 'collapse'"
         v-if="reportee.reporteesList" :data="reportee.reporteesList"/>
       </li>
     </ul>
@@ -38,24 +38,29 @@ import RecursiveAccordionComponent from './index'
 export default class RecursiveAccordion extends Vue {
   @Prop({ type: Array }) data
   @LazyInject(REPORTEES_SERVICE) reporteesService
+
   renderComponent = false
-  collapsePanel = []
+  isPanelOpen = []
 
   created () {
-    console.log(this.data)
     this.renderComponent = true
   }
 
-  togglePanel (pid) {
-    this.collapsePanel[pid] = !this.collapsePanel[pid]
+  async reRenderComponent () {
+    this.renderComponent = false
+    await Vue.nextTick()
+    this.renderComponent = true
+  }
+
+  async togglePanel (pid) {
+    this.isPanelOpen[pid] = !this.isPanelOpen[pid]
+    await this.reRenderComponent()
+    return true
   }
 
   async getReportees (reportee) {
-    this.togglePanel(reportee.pid)
-    this.renderComponent = false
     reportee.reporteesList = await this.reporteesService.fetchReportees(reportee.pid)
-    await Vue.nextTick()
-    this.renderComponent = true
+    await this.reRenderComponent()
   }
 
   get reportees () {
