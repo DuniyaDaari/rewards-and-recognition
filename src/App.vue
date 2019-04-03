@@ -68,6 +68,7 @@ export default class App extends Vue {
       this.images.flipkart = require('./assets/flipkart.jpg')
       this.images.fitbit = require('./assets/fitbit.png')
       this.images.rnr = require('./assets/rnr.jpg')
+      this.images.nrf = require('./assets/nrf.png')
       this.setAppImages(this.images)
     }
   }
