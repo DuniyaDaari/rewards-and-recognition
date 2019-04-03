@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="display-4">My Teams</h1>
     <div v-for="team in teamsDetails" :key="team.teamid">
     <div class="card teamCardMargin">
       <div class="card-header teamCardHeaderColor">

@@ -1,7 +1,7 @@
 <template>
   <div v-if="renderComponent">
-    <div v-show="showSuccessMessage " class="success my-4">Successfully given <b>{{modalData.reward.rewardName}}</b> reward to <b>{{modalData.employee.firstName}} {{modalData.employee.middleName}} {{modalData.employee.lastName}}</b> </div>
-    <div v-show="showErrorMessage " class="error my-4">There has been an error while giving reward to <b>{{modalData.employee.firstName}} {{modalData.employee.middleName}} {{modalData.employee.lastName}}</b>. Please try again later</div>
+    <div v-show="showSuccessMessage " class="success my-4">Successfully given reward. </div>
+    <div v-show="showErrorMessage " class="error my-4">There has been an error while giving reward. Please try again later</div>
     <ul class="accordion">
       <li class="card" v-for="reportee in reportees" :key="reportee.pid">
         <div class="card-header">
