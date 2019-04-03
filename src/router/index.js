@@ -7,10 +7,11 @@ import Component from 'vue-class-component'
 let AdminView = () => import('../views/admin')
 let HomeView = () => import('../views/home')
 let MyRewardsView = () => import('../views/my-rewards')
-let MyTeamsView = () => import('../views/my-teams')
+// let MyTeamsView = () => import('../views/my-teams')
 let TeamDataView = () => import('../views/team-data')
 let RedeemPoints = () => import('../views/redeem-points')
 let ConfigureRewards = () => import('../views/configure-rewards')
+let ReporteesView = () => import('../views/reportees')
 
 export function createRouter (vueInstance = Vue) {
   Component.registerHooks([
@@ -75,7 +76,7 @@ export function createRouter (vueInstance = Vue) {
     {
       path: '/:pid/my-teams',
       name: 'teams',
-      component: MyTeamsView,
+      component: ReporteesView,
       meta: {
         requiresAuth: true,
         pageCategory: 'teams',
