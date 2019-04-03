@@ -3,26 +3,35 @@
     <div class="row">
       <div class="col-sm col-8">
         <ul class="nav nav-pills">
-          <li class="nav-item">
+          <li class="nav-item mr-5">
             <router-link
-              class=""
               :to="{ name: 'home', params: {pid}}"
             ><img :src="rnrImg" class="logo"/></router-link>
           </li>
           <li class="nav-item" v-if="rewardsTabVisible">
             <router-link
               class="nav-link navColor"
+              :class="{'active' : pageCategory === 'rewards'}"
               :to="{ name: 'rewards', params: {pid}}"
             >My Rewards</router-link>
           </li>
           <li class="nav-item" v-if="teamsTabVisible">
-            <router-link class="nav-link navColor" :to="{ name: 'teams', params: {pid}}">My Teams</router-link>
+            <router-link
+              class="nav-link navColor"
+              :class="{'active' : pageCategory === 'teams'}"
+              :to="{ name: 'teams', params: {pid}}">My Teams</router-link>
           </li>
           <li class="nav-item" v-if="teamsTabVisible">
-            <router-link class="nav-link navColor" :to="{ name: 'reportees', params: {pid}}">My Reportees</router-link>
+            <router-link
+              class="nav-link navColor"
+              :class="{'active' : pageCategory === 'reportees'}"
+              :to="{ name: 'reportees', params: {pid}}">My Reportees</router-link>
           </li>
           <li class="nav-item" v-if="adminTabVisible">
-            <router-link class="nav-link navColor" :to="{ name: 'admin', params: {pid}}">Admin</router-link>
+            <router-link
+              class="nav-link navColor"
+              :class="{'active' : pageCategory === 'admin'}"
+              :to="{ name: 'admin', params: {pid}}">Admin</router-link>
           </li>
         </ul>
       </div>
@@ -90,6 +99,10 @@ export default class RrHeader extends Vue {
 
   created () {
     this.rnrImg = this.appImages.rnr
+  }
+
+  get pageCategory () {
+    return this.$route.meta.pageCategory
   }
 }
 </script>
