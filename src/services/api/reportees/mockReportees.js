@@ -40,12 +40,12 @@ export let mockReportees = {
     hasReportees: false
   },
   {
-    pid: 'P1000111',
+    pid: 'P1000112',
     name: 'First employee',
     hasReportees: false
   },
   {
-    pid: 'P1000111',
+    pid: 'P1000113',
     name: 'First employee',
     hasReportees: false
   }],

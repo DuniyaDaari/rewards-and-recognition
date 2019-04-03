@@ -1,25 +1,24 @@
 <template>
   <div v-if="renderComponent">
-    <div class="accordion" id="accordionExample">
-      <div class="card" v-for="reportee in reportees" :key="reportee.pid">
+    <ul class="accordion" id="accordionExample">
+      <li class="card" v-for="reportee in reportees" :key="reportee.pid">
         <div class="card-header" :id="`headingOne${reportee.pid}`">
-          <h2 class="mb-0">
-            <button
-              class="btn btn-link"
-              type="button"
+            <a
+              href="#"
               data-toggle="collapse"
-              @click.prevent="getReportees(reportee)"
+              @click.prevent="!reportee.reporteesList && getReportees(reportee)"
               :data-target="`#collapse${reportee.pid}`"
               aria-expanded="true"
               aria-controls="collapseOne"
               v-if="reportee.hasReportees"
-            >{{reportee.pid}}----{{reportee.name}}</button>
-            <div v-else>{{reportee.pid}}----{{reportee.name}}</div>
-          </h2>
+            >{{reportee.pid}}----{{reportee.name}}</a>
+            <span v-else>{{reportee.pid}}----{{reportee.name}}</span>
         </div>
-        <recursive-accordion v-if="reportee.reporteesList" :data="reportee.reporteesList"/>
-      </div>
-    </div>
+        <recursive-accordion :id="`collapse${reportee.pid}`"
+        class="collapse"
+        v-if="reportee.reporteesList" :data="reportee.reporteesList"/>
+      </li>
+    </ul>
   </div>
 </template>
 <script>
@@ -40,13 +39,19 @@ export default class RecursiveAccordion extends Vue {
   @Prop({ type: Array }) data
   @LazyInject(REPORTEES_SERVICE) reporteesService
   renderComponent = false
+  collapsePanel = []
 
   created () {
     console.log(this.data)
     this.renderComponent = true
   }
 
+  togglePanel (pid) {
+    this.collapsePanel[pid] = !this.collapsePanel[pid]
+  }
+
   async getReportees (reportee) {
+    this.togglePanel(reportee.pid)
     this.renderComponent = false
     reportee.reporteesList = await this.reporteesService.fetchReportees(reportee.pid)
     await Vue.nextTick()
